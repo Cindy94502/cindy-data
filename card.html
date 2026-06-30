@@ -210,16 +210,22 @@
     /* 成交記錄輪播 */
     .deals-carousel {
       position: relative;
-      padding: 0 20px 16px;
-      overflow: hidden;
+      padding: 0 0 16px;
     }
     .deals-track {
       display: flex;
-      transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+      gap: 12px;
+      padding: 4px 20px 4px;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    .deals-track::-webkit-scrollbar { display: none; }
     .deal-slide {
       flex-shrink: 0;
-      width: 100%;
+      width: 82%;
+      scroll-snap-align: center;
     }
     .deal-card-new {
       background: #fff;
@@ -917,18 +923,18 @@ function parseCSV(text) {
   }).filter(r => r['類型']);
 }
 
-let dealIdx = 0, dealTimer = null, dealTotal = 0;
+let dealTimer = null;
 
 function dealGoTo(i) {
-  dealIdx = (i + dealTotal) % dealTotal;
-  document.getElementById('deals-list').style.transform = `translateX(-${dealIdx * 100}%)`;
-  document.querySelectorAll('#deals-dots span').forEach((d,j) => d.classList.toggle('active', j===dealIdx));
+  const track = document.getElementById('deals-list');
+  const slides = track.querySelectorAll('.deal-slide');
+  if (!slides[i]) return;
+  track.scrollTo({ left: slides[i].offsetLeft - 20, behavior: 'smooth' });
 }
 
 function renderDeals(rows) {
   const track = document.getElementById('deals-list');
   const dots  = document.getElementById('deals-dots');
-  dealTotal = rows.length;
   if (!rows.length) {
     track.innerHTML = '<div class="deal-slide" style="text-align:center;color:#9aadab;font-size:13px;padding:16px 0;">暫無記錄</div>';
     return;
@@ -957,19 +963,31 @@ function renderDeals(rows) {
       </div>
     </div>`;
   }).join('');
+
+  // dots
   dots.innerHTML = rows.map((_,i) => `<span class="${i===0?'active':''}" onclick="dealGoTo(${i})"></span>`).join('');
+
+  // 用 scroll 事件更新 dots
+  track.addEventListener('scroll', () => {
+    const slides = track.querySelectorAll('.deal-slide');
+    let closest = 0, minDist = Infinity;
+    slides.forEach((s, i) => {
+      const dist = Math.abs(s.offsetLeft - track.scrollLeft - 20);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    document.querySelectorAll('#deals-dots span').forEach((d,i) => d.classList.toggle('active', i===closest));
+  }, { passive: true });
 
   // 自動輪播
   if (dealTimer) clearInterval(dealTimer);
-  if (rows.length > 1) dealTimer = setInterval(() => dealGoTo(dealIdx + 1), 3500);
-
-  // 滑動支援
-  let startX = 0;
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-  track.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 40) dealGoTo(dealIdx + (dx < 0 ? 1 : -1));
-  }, {passive:true});
+  if (rows.length > 1) {
+    let autoIdx = 0;
+    dealTimer = setInterval(() => {
+      autoIdx = (autoIdx + 1) % rows.length;
+      dealGoTo(autoIdx);
+    }, 3500);
+    track.addEventListener('touchstart', () => clearInterval(dealTimer), { once: true, passive: true });
+  }
 }
 
 fetch(SHEET_CSV)
