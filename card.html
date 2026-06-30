@@ -4,431 +4,388 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Cindy | 中信房屋 南崁一極店</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html { min-height: 100%; }
 
     body {
-      font-family: 'Noto Sans TC', -apple-system, 'PingFang TC', sans-serif;
-      background: #f0f2f5;
+      font-family: 'Noto Sans TC', 'PingFang TC', -apple-system, sans-serif;
       min-height: 100vh;
+      background-color: #e9e2d8;
+      background-image:
+        radial-gradient(ellipse 75% 55% at 10% 0%,   rgba(215, 192, 155, 0.75) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 70% at 92% 95%,  rgba(196, 168, 128, 0.65) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 40% at 72% 15%,  rgba(232, 214, 185, 0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 25% 80%,  rgba(178, 154, 118, 0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 35% at 55% 55%,  rgba(220, 205, 178, 0.30) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 52px 20px 48px;
+      overflow-x: hidden;
     }
 
-    /* ─── 封面圖 ─── */
-    .cover {
+    /* ── 裝飾背景圓 ── */
+    .deco-circle {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .deco-circle-1 {
+      width: 300px; height: 300px;
+      top: -80px; left: -80px;
+      background: radial-gradient(circle, rgba(210,185,148,0.4) 0%, transparent 70%);
+    }
+    .deco-circle-2 {
+      width: 250px; height: 250px;
+      bottom: -60px; right: -60px;
+      background: radial-gradient(circle, rgba(190,162,120,0.45) 0%, transparent 70%);
+    }
+
+    /* ── 主容器 ── */
+    .container {
       position: relative;
-      height: 220px;
-      background: linear-gradient(160deg, #c8965a 0%, #b07a3a 40%, #7a4f1e 100%);
-      overflow: hidden;
-    }
-
-    /* 封面 SVG 房屋剪影 */
-    .cover svg {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+      z-index: 1;
       width: 100%;
-      opacity: 0.18;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* 封面光暈 */
-    .cover::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 80px;
-      background: linear-gradient(to top, rgba(0,0,0,0.25), transparent);
-    }
-
-    /* ─── 大頭貼 ─── */
-    .profile-area {
-      position: relative;
-      background: #fff;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #e4e6eb;
-    }
-
+    /* ── 大頭貼 ── */
     .avatar-wrap {
-      position: absolute;
-      top: -56px;
-      left: 16px;
+      margin-bottom: 22px;
+    }
+
+    .avatar-ring {
+      display: inline-block;
+      padding: 4px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #d9b478, #c2894e, #d9b478);
+      box-shadow:
+        0 0 0 6px rgba(210,180,140,0.18),
+        0 12px 36px rgba(0,0,0,0.14);
     }
 
     .avatar {
-      width: 112px;
-      height: 112px;
-      border-radius: 50%;
-      border: 4px solid #fff;
-      object-fit: cover;
       display: block;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      object-fit: cover;
     }
 
-    /* 名字與公司 */
-    .profile-info {
-      padding: 64px 16px 0;
-    }
-
+    /* ── 姓名與公司 ── */
     .profile-name {
-      font-size: 24px;
+      font-size: 32px;
       font-weight: 700;
-      color: #050505;
-      line-height: 1.2;
-      margin-bottom: 2px;
-    }
-
-    .profile-sub {
-      font-size: 15px;
-      color: #65676b;
+      color: #231d17;
+      letter-spacing: 5px;
       margin-bottom: 10px;
     }
 
-    /* 標籤列 */
-    .tag-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .tag {
-      background: #e7f3ff;
-      color: #1877f2;
+    .profile-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(200,165,110,0.13);
+      border: 1px solid rgba(200,165,110,0.28);
+      border-radius: 30px;
+      padding: 5px 16px;
       font-size: 13px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 20px;
+      font-weight: 500;
+      color: #7a5522;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
     }
 
-    .tag.gold {
-      background: #fdf0de;
-      color: #a07035;
+    .profile-badge i {
+      font-size: 11px;
+      opacity: 0.7;
     }
 
-    /* 按鈕區 */
-    .btn-row {
+    .profile-title {
+      font-size: 14px;
+      color: #8e7d6e;
+      font-weight: 400;
+      margin-bottom: 22px;
+      letter-spacing: 1px;
+    }
+
+    /* ── 分隔線 ── */
+    .divider {
       display: flex;
-      gap: 8px;
-      padding: 0 16px 16px;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 20px;
     }
-
-    .btn {
+    .divider-line {
       flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(168,145,115,0.3), transparent);
+    }
+    .divider-icon {
+      color: rgba(168,145,115,0.5);
+      font-size: 10px;
+    }
+
+    /* ── 簡介 ── */
+    .bio {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #6e5e50;
+      text-align: center;
+      padding: 0 6px;
+      margin-bottom: 30px;
+    }
+
+    /* ── 按鈕區 ── */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .link-btn {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 9px 4px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
+      background: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(210, 190, 162, 0.28);
+      border-radius: 60px;
+      padding: 7px 18px 7px 7px;
       text-decoration: none;
-      transition: filter 0.15s;
       cursor: pointer;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.7);
+      transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s, background 0.2s;
     }
 
-    .btn:hover { filter: brightness(0.93); }
-
-    .btn-blue {
-      background: #1877f2;
-      color: #fff;
+    .link-btn:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.80);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
     }
 
-    .btn-gray {
-      background: #e4e6eb;
-      color: #050505;
+    .link-btn:active {
+      transform: translateY(-1px);
     }
 
-    .btn-green {
-      background: #42b883;
-      color: #fff;
-    }
-
-    /* ─── 資訊卡 ─── */
-    .section {
-      background: #fff;
-      border-bottom: 1px solid #e4e6eb;
-      padding: 16px;
-      margin-top: 8px;
-    }
-
-    .section-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #050505;
-      margin-bottom: 14px;
-    }
-
-    .info-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 9px 0;
-      text-decoration: none;
-      color: #050505;
-      border-bottom: 1px solid #f0f2f5;
-    }
-
-    .info-row:last-child { border-bottom: none; }
-
-    .info-icon {
-      width: 36px;
-      height: 36px;
+    .btn-icon {
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
-      background: #f0f2f5;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 18px;
+      margin-right: 16px;
+      font-size: 21px;
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
     }
 
-    .info-text {
+    .btn-text-wrap {
       flex: 1;
+      text-align: left;
     }
 
-    .info-label {
-      font-size: 12px;
-      color: #65676b;
-      margin-bottom: 1px;
-    }
-
-    .info-value {
+    .btn-label {
+      display: block;
       font-size: 15px;
-      color: #050505;
-      font-weight: 500;
+      font-weight: 600;
+      color: #231d17;
+      line-height: 1.25;
+      margin-bottom: 2px;
     }
 
-    a.info-row .info-value {
-      color: #1877f2;
+    .btn-sub {
+      display: block;
+      font-size: 12px;
+      color: #9e8e80;
+      font-weight: 400;
     }
 
-    .info-arrow {
-      color: #bcc0c4;
-      font-size: 18px;
+    .btn-arrow {
+      color: #ccc;
+      font-size: 15px;
+      margin-left: 6px;
     }
 
-    /* ─── QR 區 ─── */
-    .qr-section {
-      background: #fff;
-      margin-top: 8px;
-      padding: 20px 16px;
+    /* 各按鈕顏色 */
+    .btn-phone  .btn-icon { background: linear-gradient(145deg, #d0884a, #a86030); }
+    .btn-line   .btn-icon { background: linear-gradient(145deg, #06c755, #00a040); }
+    .btn-web    .btn-icon { background: linear-gradient(145deg, #7098c8, #4a70a8); }
+
+    /* ── QR Code 區 ── */
+    .qr-card {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(210, 190, 162, 0.25);
+      border-radius: 28px;
+      padding: 22px 20px;
       text-align: center;
-      border-bottom: 1px solid #e4e6eb;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.65);
     }
 
     .qr-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #050505;
+      font-size: 15px;
+      font-weight: 600;
+      color: #2d2520;
       margin-bottom: 4px;
     }
 
     .qr-sub {
-      font-size: 13px;
-      color: #65676b;
-      margin-bottom: 14px;
-    }
-
-    .qr-box {
-      display: inline-block;
-      padding: 12px;
-      background: #fff;
-      border: 1px solid #e4e6eb;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    }
-
-    /* ─── 物件按鈕 ─── */
-    .section-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #e7f3ff;
-      color: #1877f2;
-      font-size: 15px;
-      font-weight: 700;
-      padding: 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 12px;
-      transition: background 0.15s;
-    }
-
-    .section-btn:hover { background: #d8eaff; }
-
-    /* ─── Footer ─── */
-    .footer {
-      background: #fff;
-      margin-top: 8px;
-      padding: 20px 16px;
-      text-align: center;
-      color: #65676b;
       font-size: 12px;
-      line-height: 1.8;
+      color: #9e8e80;
+      margin-bottom: 16px;
     }
 
-    .footer strong {
-      color: #1877f2;
+    .qr-canvas-wrap {
+      display: inline-block;
+      padding: 10px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .qr-id {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #7a6a5c;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── 頁尾 ── */
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(100, 88, 76, 0.45);
+      line-height: 1.8;
     }
   </style>
 </head>
 <body>
 
-<!-- 封面圖 -->
-<div class="cover">
-  <!-- 房屋城市剪影 SVG -->
-  <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
-    <!-- 大樓群 -->
-    <rect x="0" y="50" width="30" height="70" fill="#fff"/>
-    <rect x="5" y="40" width="20" height="10" fill="#fff"/>
-    <rect x="35" y="30" width="40" height="90" fill="#fff"/>
-    <rect x="45" y="20" width="20" height="10" fill="#fff"/>
-    <rect x="80" y="55" width="25" height="65" fill="#fff"/>
-    <!-- 透天厝 -->
-    <polygon points="110,45 125,25 140,45" fill="#fff"/>
-    <rect x="113" y="45" width="24" height="55" fill="#fff"/>
-    <rect x="120" y="60" width="10" height="15" fill="#c8965a"/>
-    <!-- 大樓 -->
-    <rect x="145" y="35" width="35" height="85" fill="#fff"/>
-    <rect x="148" y="25" width="29" height="10" fill="#fff"/>
-    <!-- 小屋 -->
-    <polygon points="185,55 200,38 215,55" fill="#fff"/>
-    <rect x="188" y="55" width="24" height="45" fill="#fff"/>
-    <rect x="195" y="67" width="10" height="15" fill="#c8965a"/>
-    <!-- 高樓 -->
-    <rect x="220" y="20" width="45" height="100" fill="#fff"/>
-    <rect x="228" y="10" width="29" height="10" fill="#fff"/>
-    <rect x="225" y="5" width="35" height="5" fill="#fff"/>
-    <!-- 中樓 -->
-    <rect x="270" y="45" width="30" height="75" fill="#fff"/>
-    <!-- 小店面 -->
-    <rect x="305" y="60" width="35" height="60" fill="#fff"/>
-    <rect x="310" y="50" width="25" height="10" fill="#fff"/>
-    <!-- 透天 -->
-    <polygon points="345,50 360,32 375,50" fill="#fff"/>
-    <rect x="348" y="50" width="24" height="50" fill="#fff"/>
-    <!-- 大樓右側 -->
-    <rect x="375" y="40" width="25" height="80" fill="#fff"/>
-  </svg>
-</div>
+  <!-- 裝飾背景 -->
+  <div class="deco-circle deco-circle-1"></div>
+  <div class="deco-circle deco-circle-2"></div>
 
-<!-- 個人資訊區 -->
-<div class="profile-area">
-  <div class="avatar-wrap">
-    <img class="avatar" src="avatar.jpg" alt="Cindy">
-  </div>
+  <div class="container">
 
-  <div class="profile-info">
+    <!-- 大頭貼 -->
+    <div class="avatar-wrap">
+      <div class="avatar-ring">
+        <img class="avatar" src="avatar.jpg" alt="Cindy">
+      </div>
+    </div>
+
+    <!-- 姓名 -->
     <div class="profile-name">Cindy</div>
-    <div class="profile-sub">中信房屋 南崁一極店・專業不動產業務</div>
-    <div class="tag-row">
-      <span class="tag gold">🏡 蘆竹・南崁</span>
-      <span class="tag">深耕在地</span>
+
+    <div class="profile-badge">
+      <i class="fa-solid fa-building-columns"></i>
+      中信房屋 南崁一極店
     </div>
+
+    <div class="profile-title">專業不動產業務 &nbsp;·&nbsp; 蘆竹・南崁</div>
+
+    <!-- 分隔 -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <i class="fa-solid fa-house-chimney divider-icon"></i>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- 簡介 -->
+    <p class="bio">
+      用心陪伴每一個尋家的旅程<br>
+      深耕蘆竹・南崁多年<br>
+      讓找房這件事，變得溫暖而簡單
+    </p>
+
+    <!-- 聯絡按鈕 -->
+    <div class="links">
+
+      <a class="link-btn btn-phone" href="tel:0963585690">
+        <div class="btn-icon">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+        <div class="btn-text-wrap">
+          <span class="btn-label">0963-585-690</span>
+          <span class="btn-sub">點擊立即通話</span>
+        </div>
+        <i class="fa-solid fa-chevron-right btn-arrow"></i>
+      </a>
+
+      <a class="link-btn btn-line" href="https://line.me/ti/p/@019nrmqw" target="_blank">
+        <div class="btn-icon">
+          <!-- LINE SVG logo -->
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+        </div>
+        <div class="btn-text-wrap">
+          <span class="btn-label">LINE 加好友</span>
+          <span class="btn-sub">@019nrmqw</span>
+        </div>
+        <i class="fa-solid fa-chevron-right btn-arrow"></i>
+      </a>
+
+      <a class="link-btn btn-web" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank">
+        <div class="btn-icon">
+          <i class="fa-solid fa-house"></i>
+        </div>
+        <div class="btn-text-wrap">
+          <span class="btn-label">精選物件</span>
+          <span class="btn-sub">線上瀏覽所有在售物件</span>
+        </div>
+        <i class="fa-solid fa-chevron-right btn-arrow"></i>
+      </a>
+
+    </div>
+
+    <!-- LINE QR Code -->
+    <div class="qr-card">
+      <div class="qr-title">掃描加入 LINE 好友</div>
+      <div class="qr-sub">開啟相機對準 QR Code 即可</div>
+      <div class="qr-canvas-wrap">
+        <canvas id="qrcode"></canvas>
+      </div>
+      <div class="qr-id">LINE ID &nbsp;·&nbsp; @019nrmqw</div>
+    </div>
+
+    <!-- 頁尾 -->
+    <div class="footer">
+      中信房屋 南崁一極店<br>
+      桃園市 蘆竹・南崁 深耕在地服務
+    </div>
+
   </div>
-</div>
 
-<!-- 按鈕 -->
-<div class="btn-row" style="background:#fff; padding:0 16px 16px; border-bottom:1px solid #e4e6eb;">
-  <a class="btn btn-blue" href="tel:0963585690">
-    📞 立即電話
-  </a>
-  <a class="btn btn-green" href="https://line.me/ti/p/@019nrmqw" target="_blank">
-    💬 LINE 加好友
-  </a>
-</div>
-
-<!-- 關於我 -->
-<div class="section">
-  <div class="section-title">關於我</div>
-
-  <div class="info-row">
-    <div class="info-icon">🏢</div>
-    <div class="info-text">
-      <div class="info-label">服務公司</div>
-      <div class="info-value">中信房屋 南崁一極店</div>
-    </div>
-  </div>
-
-  <div class="info-row">
-    <div class="info-icon">📍</div>
-    <div class="info-text">
-      <div class="info-label">服務地區</div>
-      <div class="info-value">桃園市 蘆竹・南崁</div>
-    </div>
-  </div>
-
-  <div class="info-row">
-    <div class="info-icon">🎯</div>
-    <div class="info-text">
-      <div class="info-label">專長</div>
-      <div class="info-value">住宅買賣・電梯大樓・透天別墅</div>
-    </div>
-  </div>
-
-  <a class="section-btn" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank">
-    🏠 查看精選物件
-  </a>
-</div>
-
-<!-- 聯絡方式 -->
-<div class="section">
-  <div class="section-title">聯絡方式</div>
-
-  <a class="info-row" href="tel:0963585690">
-    <div class="info-icon">📞</div>
-    <div class="info-text">
-      <div class="info-label">手機電話</div>
-      <div class="info-value">0963-585-690</div>
-    </div>
-    <span class="info-arrow">›</span>
-  </a>
-
-  <a class="info-row" href="https://line.me/ti/p/@019nrmqw" target="_blank">
-    <div class="info-icon">💬</div>
-    <div class="info-text">
-      <div class="info-label">LINE</div>
-      <div class="info-value">@019nrmqw</div>
-    </div>
-    <span class="info-arrow">›</span>
-  </a>
-
-  <a class="info-row" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank">
-    <div class="info-icon">🌐</div>
-    <div class="info-text">
-      <div class="info-label">物件網站</div>
-      <div class="info-value">線上瀏覽所有物件</div>
-    </div>
-    <span class="info-arrow">›</span>
-  </a>
-</div>
-
-<!-- LINE QR Code -->
-<div class="qr-section">
-  <div class="qr-title">📲 LINE 掃描加好友</div>
-  <div class="qr-sub">用手機掃描即可立即加我好友</div>
-  <div class="qr-box">
-    <canvas id="qrcode"></canvas>
-  </div>
-</div>
-
-<!-- Footer -->
-<div class="footer">
-  <strong>Cindy 房仲業務</strong><br>
-  中信房屋 南崁一極店<br>
-  桃園市蘆竹・南崁 深耕在地
-</div>
-
-<script>
-  QRCode.toCanvas(document.getElementById('qrcode'), 'https://line.me/ti/p/@019nrmqw', {
-    width: 160,
-    margin: 1,
-    color: { dark: '#1877f2', light: '#ffffff' }
-  });
-</script>
+  <script>
+    QRCode.toCanvas(document.getElementById('qrcode'), 'https://line.me/ti/p/@019nrmqw', {
+      width: 160,
+      margin: 1,
+      color: { dark: '#231d17', light: '#ffffff' }
+    });
+  </script>
 
 </body>
 </html>
