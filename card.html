@@ -967,8 +967,8 @@ function renderDeals(rows) {
         <div class="deal-body">
           <div class="deal-body-top">
             <div>
-              <div class="db-type">${r['類型']}</div>
-              ${r['地區'] ? `<div class="db-meta">${r['地區']}</div>` : ''}
+              <div class="db-type">${r['說明'] || r['類型']}</div>
+              ${r['地區'] ? `<div class="db-meta">${r['地區']} · ${r['類型']}</div>` : ''}
             </div>
             ${r['日期'] ? `<div class="db-date">${r['日期']}</div>` : ''}
           </div>
