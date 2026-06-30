@@ -3,185 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Cindy | 中信房屋</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>Cindy | 中信房屋 南崁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'ChenYu';
       src: url('https://raw.githubusercontent.com/Chenyu-otf/chenyuluoyan_thin/main/ChenYuluoyan-2.0-Thin.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
+      font-weight: normal; font-style: normal; font-display: swap;
     }
 
-    *, *::before, *::after {
-      margin: 0; padding: 0; box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
-    html {
-      background: #e8e4db;
-    }
+    html { background: #cdd9d8; }
 
     body {
       font-family: 'ChenYu', 'Noto Sans TC', 'PingFang TC', sans-serif;
-      max-width: 430px;
-      margin: 0 auto;
-      background: #faf9f5;
+      max-width: 430px; margin: 0 auto;
+      background: #f5f2ec;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══ 格紋背景 mixin ══ */
+    .grid-bg {
+      background-color: #B2CDCB;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.28) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.28) 1px, transparent 1px);
+      background-size: 26px 26px;
     }
 
     /* ══ 封面 ══ */
     .cover {
-      position: relative;
-      width: 100%;
-      height: 210px;
-      background: linear-gradient(150deg, #8aaa87 0%, #527254 50%, #3a5440 100%);
+      position: relative; width: 100%; min-height: 280px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 40px 24px 70px;
       overflow: hidden;
     }
 
     .cover::after {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       bottom: -1px; left: -5%; right: -5%;
-      height: 52px;
-      background: #faf9f5;
+      height: 56px; background: #f5f2ec;
       border-radius: 55% 55% 0 0;
     }
 
-    /* 封面植物插畫 */
-    .cover-botanical-r {
-      position: absolute;
-      bottom: 22px; right: -8px;
-      width: 200px; opacity: 0.12;
-      pointer-events: none;
+    /* 封面小花插畫 */
+    .cover-flower {
+      position: absolute; bottom: 40px; left: 16px;
+      opacity: 0.55; pointer-events: none;
     }
-    .cover-botanical-l {
-      position: absolute;
-      top: 5px; left: -8px;
-      width: 140px; opacity: 0.09;
-      pointer-events: none;
-      transform: scaleX(-1) rotate(12deg);
+    .cover-flower-r {
+      position: absolute; top: 20px; right: 12px;
+      opacity: 0.38; pointer-events: none;
+      transform: rotate(20deg) scaleX(-1);
     }
 
     /* 品牌標籤 */
-    .cover-brand {
-      position: absolute;
-      top: 22px; left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.13);
-      border: 1px solid rgba(255,255,255,0.28);
-      border-radius: 30px;
-      padding: 6px 18px;
-      font-family: 'ChenYu', 'Noto Serif TC', serif;
-      font-size: 13px; font-weight: 400;
-      color: rgba(255,255,255,0.92);
-      letter-spacing: 1.5px;
+    .cover-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.55);
+      border-radius: 30px; padding: 5px 16px;
+      font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
+      font-size: 12px; color: #3a5a58;
+      letter-spacing: 1.5px; margin-bottom: 22px;
+      position: relative; z-index: 2;
     }
-    .brand-dot { width: 5px; height: 5px; border-radius: 50%; background: #c8e0a8; flex-shrink: 0; }
+    .tag-dot { width: 5px; height: 5px; border-radius: 50%; background: #5a8a87; flex-shrink:0; }
 
-    /* ══ 頭像 ══ */
+    /* 封面主標 */
+    .cover-headline {
+      font-family: 'ChenYu', 'Noto Serif TC', serif;
+      font-size: 32px; font-weight: 400;
+      color: #2a2018; line-height: 1.55;
+      text-align: center; letter-spacing: 2px;
+      position: relative; z-index: 2; margin-bottom: 14px;
+    }
+
+    /* 黃色底線強調 */
+    .cover-headline span {
+      position: relative; display: inline-block;
+    }
+    .cover-headline span::after {
+      content: ''; position: absolute;
+      left: 0; right: 0; bottom: 2px;
+      height: 8px; background: #e8c870; opacity: 0.55; z-index: -1;
+      border-radius: 2px;
+    }
+
+    .cover-sub {
+      font-family: 'ChenYu', 'Noto Serif TC', serif;
+      font-size: 13px; color: #4a5a56;
+      letter-spacing: 2px; line-height: 1.9;
+      text-align: center; position: relative; z-index: 2;
+    }
+
+    /* ══ 大頭貼 ══ */
     .avatar-section {
       display: flex; flex-direction: column; align-items: center;
-      margin-top: -72px; position: relative; z-index: 10;
+      margin-top: -64px; position: relative; z-index: 10;
     }
     .avatar-outer { position: relative; display: inline-block; }
     .avatar-outer::before {
-      content: ''; position: absolute; inset: -8px;
+      content: ''; position: absolute; inset: -7px;
       border-radius: 50%;
-      border: 1.5px dashed rgba(255,255,255,0.5);
+      border: 1.5px dashed rgba(178,205,203,0.7);
     }
     .avatar-outer::after {
-      content: ''; position: absolute; inset: -15px;
+      content: ''; position: absolute; inset: -14px;
       border-radius: 50%;
-      border: 1px dashed rgba(82,114,84,0.25);
+      border: 1px dashed rgba(178,205,203,0.35);
     }
     .avatar {
-      display: block; width: 124px; height: 124px;
-      border-radius: 50%; border: 4px solid #faf9f5;
-      object-fit: cover;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+      display: block; width: 118px; height: 118px;
+      border-radius: 50%; border: 4px solid #f5f2ec;
+      object-fit: cover; box-shadow: 0 6px 22px rgba(90,138,135,0.2);
     }
 
     /* ══ 姓名 ══ */
-    .profile-section {
-      padding: 18px 24px 8px;
-      text-align: center;
-    }
+    .profile-section { padding: 16px 24px 8px; text-align: center; }
     .profile-name {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 38px; font-style: italic; font-weight: 600;
-      color: #2a2218; letter-spacing: 1px; line-height: 1.1;
-      margin-bottom: 10px;
-    }
-    .profile-cn-name {
-      font-family: 'ChenYu', 'Noto Serif TC', serif;
-      font-size: 15px; color: #4a6248;
-      letter-spacing: 3px; margin-bottom: 6px;
+      font-size: 36px; font-style: italic; font-weight: 600;
+      color: #2a2018; letter-spacing: 1px; line-height: 1.1; margin-bottom: 8px;
     }
     .profile-company {
       font-family: 'ChenYu', 'Noto Serif TC', serif;
-      font-size: 12px; color: #8a7a62;
-      letter-spacing: 2.5px; margin-bottom: 5px;
+      font-size: 12px; color: #7a8a88; letter-spacing: 2px; margin-bottom: 5px;
     }
     .profile-title {
       font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 12px; color: #6a8668;
-      letter-spacing: 2px; font-weight: 400; margin-bottom: 14px;
+      font-size: 11px; color: #9aadab; letter-spacing: 2px; margin-bottom: 14px;
     }
     .location-tag {
       display: inline-flex; align-items: center; gap: 6px;
-      border: 1px solid rgba(106,134,104,0.35);
+      border: 1px solid rgba(178,205,203,0.6);
       border-radius: 20px; padding: 5px 16px;
       font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 12px; color: #527254;
-      letter-spacing: 1px;
+      font-size: 12px; color: #5a8a87; letter-spacing: 1px;
     }
-    .icon-sm { width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; }
 
-    /* ══ 分隔線 ══ */
+    /* ══ 分隔 ══ */
     .section-divider {
       display: flex; align-items: center; gap: 10px;
-      padding: 0 28px; margin: 20px 0 0;
+      padding: 0 28px; margin: 22px 0 0;
     }
-    .div-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(140,120,100,0.18), transparent); }
-    .div-leaf { display: flex; align-items: center; opacity: 0.45; }
+    .div-line { flex:1; height:1px; background: linear-gradient(to right, transparent, rgba(178,205,203,0.5), transparent); }
+    .div-dot { width:6px; height:6px; border-radius:50%; background:#B2CDCB; flex-shrink:0; }
 
     /* ══ 引言 ══ */
-    .quote-section { padding: 16px 32px 12px; text-align: center; }
+    .quote-section { padding: 16px 32px 6px; text-align: center; }
     .quote-text {
       font-family: 'ChenYu', 'Noto Serif TC', serif;
-      font-size: 14px; color: #7a6a56;
-      line-height: 2.1; letter-spacing: 1px;
+      font-size: 13px; color: #6a5a48; line-height: 2.2; letter-spacing: 1.5px;
     }
 
     /* ══ 區塊標題 ══ */
     .section-label {
       font-family: 'Playfair Display', serif;
-      font-size: 11px; font-weight: 400; font-style: italic;
-      color: #b0a080; letter-spacing: 2px;
-      padding: 20px 0 12px;
+      font-size: 11px; font-style: italic; font-weight: 400;
+      color: #9aadab; letter-spacing: 2px; padding: 20px 0 12px;
     }
 
     /* ══ 關於我 ══ */
     .info-section { padding: 0 20px; }
     .info-row {
       display: flex; align-items: flex-start; gap: 14px;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(140,120,100,0.1);
+      padding: 13px 0; border-bottom: 1px solid rgba(178,205,203,0.3);
     }
-    .info-row:first-of-type { border-top: 1px solid rgba(140,120,100,0.1); }
-    .info-icon { width: 22px; text-align: center; color: #6a8668; padding-top: 1px; flex-shrink: 0; }
-    .info-text { flex: 1; }
+    .info-row:first-of-type { border-top: 1px solid rgba(178,205,203,0.3); }
+    .info-icon { width: 22px; text-align: center; color: #7ab5b3; padding-top: 1px; flex-shrink:0; }
+    .info-text { flex:1; }
     .info-label {
       font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 10px; color: #b0a080; letter-spacing: 1px; margin-bottom: 3px;
+      font-size: 10px; color: #9aadab; letter-spacing: 1px; margin-bottom: 3px;
     }
     .info-value {
       font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 14px; font-weight: 400; color: #2a2218; line-height: 1.5;
+      font-size: 14px; color: #2a2018; line-height: 1.5;
     }
 
     /* ══ 服務項目 ══ */
@@ -190,144 +189,136 @@
       gap: 10px; padding: 0 20px;
     }
     .service-card {
-      background: #f2f0ea;
-      border-radius: 14px; padding: 16px 14px;
+      background: #eef4f3; border-radius: 14px; padding: 16px 14px;
       display: flex; flex-direction: column; gap: 8px;
     }
-    .service-icon { width: 32px; height: 32px; background: #e4ede2; border-radius: 9px;
-      display: flex; align-items: center; justify-content: center; color: #527254; }
+    .service-icon {
+      width: 32px; height: 32px; background: #daecea; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; color: #5a8a87;
+    }
     .service-name {
       font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 13px; font-weight: 400; color: #2a2218; letter-spacing: 0.5px;
+      font-size: 13px; color: #2a2018; letter-spacing: 0.5px;
     }
     .service-desc {
       font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 11px; color: #9a8a72; line-height: 1.6; letter-spacing: 0.3px;
+      font-size: 11px; color: #8a9a98; line-height: 1.7; letter-spacing: 0.3px;
     }
 
     /* ══ 服務承諾 ══ */
-    .promise-section { padding: 0 20px; }
     .promise-row {
-      display: flex; align-items: center; gap: 14px;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(140,120,100,0.1);
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid rgba(178,205,203,0.3);
     }
-    .promise-row:first-of-type { border-top: 1px solid rgba(140,120,100,0.1); }
-    .promise-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #7c9e7a; flex-shrink: 0; margin-left: 7px;
-    }
+    .promise-row:first-of-type { border-top: 1px solid rgba(178,205,203,0.3); }
+    .promise-dot { width:7px; height:7px; border-radius:50%; background:#B2CDCB; flex-shrink:0; margin-top:5px; }
     .promise-text {
       font-family: 'ChenYu', 'Noto Serif TC', serif;
-      font-size: 13px; color: #3a3028; line-height: 1.6; letter-spacing: 0.8px;
+      font-size: 13px; color: #3a2e1e; line-height: 1.7; letter-spacing: 0.8px;
     }
 
-    /* ══ 聯絡方式 ══ */
+    /* ══ 聯絡 ══ */
     .contact-section { padding: 0 20px; }
     .contact-row {
       display: flex; align-items: center; gap: 14px;
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(140,120,100,0.1);
-      text-decoration: none; color: inherit;
-      transition: opacity 0.12s;
+      padding: 15px 0; border-bottom: 1px solid rgba(178,205,203,0.3);
+      text-decoration: none; color: inherit; transition: opacity 0.12s;
     }
-    .contact-row:first-of-type { border-top: 1px solid rgba(140,120,100,0.1); }
+    .contact-row:first-of-type { border-top: 1px solid rgba(178,205,203,0.3); }
     .contact-row:active { opacity: 0.6; }
     .c-icon {
-      width: 40px; height: 40px; border-radius: 11px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink:0;
     }
-    .ci-phone { background: #edf2ea; color: #527254; }
-    .ci-line  { background: #e5f5eb; color: #0a9640; }
-    .ci-web   { background: #eaeff5; color: #4a6890; }
-    .c-text { flex: 1; min-width: 0; }
-    .c-label {
-      font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 10px; color: #b0a080; letter-spacing: 1px; margin-bottom: 3px;
-    }
-    .c-value {
-      font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 15px; font-weight: 400; color: #2a2218;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    }
-    .c-arrow { color: #d0c8b8; display: flex; align-items: center; }
+    .ci-phone { background: #daecea; color: #5a8a87; }
+    .ci-line  { background: #d8f0e0; color: #0a9640; }
+    .c-text { flex:1; min-width:0; }
+    .c-label { font-family:'ChenYu','Noto Sans TC',sans-serif; font-size:10px; color:#9aadab; letter-spacing:1px; margin-bottom:3px; }
+    .c-value { font-family:'ChenYu','Noto Sans TC',sans-serif; font-size:15px; color:#2a2018; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .c-arrow { color:#c8d8d6; display:flex; align-items:center; }
 
-    /* ══ CTA 按鈕 ══ */
-    .cta-section {
-      padding: 18px 20px 12px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-    }
+    /* ══ CTA 按鈕（膠囊） ══ */
+    .cta-section { padding: 18px 20px 10px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
     .cta-btn {
-      height: 52px; border-radius: 13px;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      font-family: 'ChenYu', 'Noto Sans TC', sans-serif;
-      font-size: 14px; font-weight: 400;
-      text-decoration: none; letter-spacing: 1px;
+      height: 50px; border-radius: 50px;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      font-family:'ChenYu','Noto Sans TC',sans-serif;
+      font-size:14px; text-decoration:none; letter-spacing:1px;
       transition: opacity 0.15s, transform 0.15s;
     }
-    .cta-btn:active { opacity: 0.8; transform: scale(0.97); }
-    .btn-phone { background: #3c5a3e; color: #fff; }
+    .cta-btn:active { opacity:0.8; transform:scale(0.97); }
+    .btn-phone { background: #7ab5b3; color: #fff; }
     .btn-line  { background: #06c755; color: #fff; }
 
-    /* 物件按鈕 */
     .property-btn {
-      display: flex; align-items: center; justify-content: center; gap: 9px;
-      margin: 8px 20px 28px;
-      height: 50px; border-radius: 13px;
-      border: 1.5px solid rgba(106,134,104,0.38);
-      font-family: 'ChenYu', 'Noto Serif TC', serif;
-      color: #527254; font-size: 14px;
-      text-decoration: none; letter-spacing: 1px;
+      display:flex; align-items:center; justify-content:center; gap:9px;
+      margin: 8px 20px 28px; height:50px; border-radius:50px;
+      border: 1.5px solid rgba(178,205,203,0.7);
+      font-family:'ChenYu','Noto Serif TC',serif;
+      color: #5a8a87; font-size:14px; text-decoration:none; letter-spacing:1px;
       transition: background 0.15s;
     }
-    .property-btn:active { background: rgba(106,134,104,0.07); }
+    .property-btn:active { background: rgba(178,205,203,0.15); }
 
     /* ══ Footer ══ */
     .card-footer {
-      background: linear-gradient(150deg, #8aaa87 0%, #527254 50%, #3a5440 100%);
-      padding: 28px 20px 36px;
-      text-align: center; position: relative; overflow: hidden;
+      padding: 28px 20px 36px; text-align:center; position:relative; overflow:hidden;
     }
-    .footer-botanical {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0.08; pointer-events: none;
-    }
+    .footer-flower { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0.12; pointer-events:none; }
     .footer-name {
-      font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: 24px;
-      color: rgba(255,255,255,0.92); letter-spacing: 2px;
-      margin-bottom: 6px; position: relative;
+      font-family:'Playfair Display',serif; font-style:italic; font-size:22px;
+      color: #3a5a58; letter-spacing:2px; margin-bottom:6px; position:relative;
     }
     .footer-tagline {
-      font-family: 'ChenYu', 'Noto Serif TC', serif;
-      font-size: 12px; color: rgba(255,255,255,0.55);
-      letter-spacing: 2px; margin-bottom: 4px; position: relative;
+      font-family:'ChenYu','Noto Serif TC',serif;
+      font-size:12px; color:#7a9a98; letter-spacing:2px; margin-bottom:4px; position:relative;
     }
     .footer-company {
-      font-family: 'ChenYu', 'Noto Serif TC', serif;
-      font-size: 11px; color: rgba(255,255,255,0.4);
-      letter-spacing: 1.5px; position: relative;
+      font-family:'ChenYu','Noto Serif TC',serif;
+      font-size:11px; color:#9aadab; letter-spacing:1.5px; position:relative;
     }
+
+    /* icon 尺寸 */
+    .icon-sm { width:12px; height:12px; fill:currentColor; flex-shrink:0; }
   </style>
 </head>
 <body>
 
   <!-- 封面 -->
-  <div class="cover">
-    <svg class="cover-botanical-r" viewBox="0 0 200 240" fill="none">
-      <path d="M100 230 C100 200 80 170 60 140 C40 110 20 80 40 50 C60 20 100 10 120 30 C140 50 130 90 120 120 C110 150 100 180 100 230Z" fill="#fff"/>
-      <path d="M100 230 C105 195 130 168 150 140 C170 112 185 78 165 50 C145 22 110 18 95 40 C80 62 90 98 100 125 C110 152 100 185 100 230Z" fill="#fff" opacity="0.6"/>
-      <path d="M60 100 C40 90 20 60 30 40 C42 18 70 25 75 50 C78 65 70 85 60 100Z" fill="#fff" opacity="0.5"/>
-      <path d="M140 90 C162 78 178 48 168 30 C156 8 128 16 122 42 C118 57 128 76 140 90Z" fill="#fff" opacity="0.4"/>
+  <div class="cover grid-bg">
+
+    <!-- 小花左 -->
+    <svg class="cover-flower" width="72" height="90" viewBox="0 0 72 90" fill="none">
+      <ellipse cx="36" cy="20" rx="8" ry="14" fill="#e8c870" opacity="0.7"/>
+      <ellipse cx="20" cy="30" rx="7" ry="13" fill="#dbb8a0" opacity="0.6" transform="rotate(-40 20 30)"/>
+      <ellipse cx="52" cy="30" rx="7" ry="13" fill="#e8c870" opacity="0.55" transform="rotate(40 52 30)"/>
+      <ellipse cx="14" cy="50" rx="6" ry="11" fill="#dbb8a0" opacity="0.45" transform="rotate(-70 14 50)"/>
+      <ellipse cx="58" cy="50" rx="6" ry="11" fill="#e8c870" opacity="0.4" transform="rotate(70 58 50)"/>
+      <line x1="36" y1="34" x2="36" y2="88" stroke="#a08060" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M36 60 C28 54 18 56 16 64" stroke="#a08060" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M36 70 C44 64 52 67 54 74" stroke="#a08060" stroke-width="1" fill="none" stroke-linecap="round"/>
     </svg>
-    <svg class="cover-botanical-l" viewBox="0 0 140 180" fill="none">
-      <path d="M70 170 C70 140 55 115 40 90 C25 65 10 40 28 20 C46 0 75 5 85 25 C95 45 85 75 75 100 C65 125 70 148 70 170Z" fill="#fff"/>
-      <path d="M70 170 C75 142 90 118 105 92 C120 66 130 40 115 22 C100 4 72 8 60 28 C48 48 58 78 67 105 C76 132 70 145 70 170Z" fill="#fff" opacity="0.5"/>
+
+    <!-- 小花右 -->
+    <svg class="cover-flower-r" width="50" height="65" viewBox="0 0 72 90" fill="none">
+      <ellipse cx="36" cy="20" rx="8" ry="14" fill="#e8c870" opacity="0.7"/>
+      <ellipse cx="20" cy="30" rx="7" ry="13" fill="#dbb8a0" opacity="0.6" transform="rotate(-40 20 30)"/>
+      <ellipse cx="52" cy="30" rx="7" ry="13" fill="#e8c870" opacity="0.55" transform="rotate(40 52 30)"/>
+      <line x1="36" y1="34" x2="36" y2="88" stroke="#a08060" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
-    <div class="cover-brand">
-      <span class="brand-dot"></span>
-      中信房屋 南崁一極店
+
+    <div class="cover-tag">
+      <span class="tag-dot"></span>
+      南崁在地 · 中信房屋
+    </div>
+
+    <div class="cover-headline">
+      南崁長大的人<br><span>陪你找到家</span>
+    </div>
+
+    <div class="cover-sub">
+      理想生活，從家開始<br>
+      用心陪你，找到對的家
     </div>
   </div>
 
@@ -341,9 +332,8 @@
   <!-- 姓名 -->
   <div class="profile-section">
     <div class="profile-name">Cindy</div>
-    <div class="profile-cn-name">辛迪　不動產顧問</div>
     <div class="profile-company">中信房屋 南崁一極店</div>
-    <div class="profile-title">SINYI REALTY · NANKAN</div>
+    <div class="profile-title">不動產業務</div>
     <span class="location-tag">
       <svg class="icon-sm" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
       桃園　蘆竹　南崁
@@ -353,18 +343,16 @@
   <!-- 分隔 -->
   <div class="section-divider">
     <div class="div-line"></div>
-    <span class="div-leaf">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#7c9e7a"><path d="M6.05 8.5c.92-4.13 4.69-7 9.24-7H21l-.93 2.79C19.18 7.46 17.77 9 16 10H7l-.95-1.5zm-.59 1L4.53 12H7v7H5v-5.12C3.71 13.12 3 11.38 3 9.5H5.46z"/></svg>
-    </span>
+    <div class="div-dot"></div>
     <div class="div-line"></div>
   </div>
 
   <!-- 引言 -->
   <div class="quote-section">
     <div class="quote-text">
-      在蘆竹南崁深耕多年<br>
-      用心傾聽每個家的故事<br>
-      陪你找到那個真正屬於你的家
+      我在南崁住了將近 20 年<br>
+      這裡的每條街道、每個早餐店<br>
+      每所學校，我都熟
     </div>
   </div>
 
@@ -372,39 +360,31 @@
   <div class="info-section">
     <div class="section-label">About Me</div>
     <div class="info-row">
-      <span class="info-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.7l7 6.3v8H5V12l7-6.3z"/></svg>
-      </span>
+      <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.7l7 6.3v8H5V12l7-6.3z"/></svg></span>
       <div class="info-text">
         <div class="info-label">服務公司</div>
         <div class="info-value">中信房屋 南崁一極店</div>
       </div>
     </div>
     <div class="info-row">
-      <span class="info-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 7h-4V5l-2-2h-4L8 5v2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-8-2h4v2h-4V5zM4 19V9h16v10H4z"/></svg>
-      </span>
+      <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 7h-4V5l-2-2h-4L8 5v2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-8-2h4v2h-4V5zM4 19V9h16v10H4z"/></svg></span>
       <div class="info-text">
         <div class="info-label">職稱</div>
-        <div class="info-value">不動產專業業務</div>
+        <div class="info-value">不動產業務</div>
       </div>
     </div>
     <div class="info-row">
-      <span class="info-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-      </span>
+      <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
       <div class="info-text">
         <div class="info-label">服務地區</div>
         <div class="info-value">桃園市 蘆竹區 · 南崁</div>
       </div>
     </div>
     <div class="info-row">
-      <span class="info-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
-      </span>
+      <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6.05-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C6.81 18.05 5 15.21 5 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg></span>
       <div class="info-text">
-        <div class="info-label">從業資歷</div>
-        <div class="info-value">深耕蘆竹南崁多年</div>
+        <div class="info-label">在地資歷</div>
+        <div class="info-value">南崁居民將近 20 年</div>
       </div>
     </div>
   </div>
@@ -415,55 +395,45 @@
   </div>
   <div class="service-grid">
     <div class="service-card">
-      <div class="service-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      </div>
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
       <div class="service-name">住宅買賣</div>
-      <div class="service-desc">新成屋、中古屋、大樓、透天一手掌握</div>
+      <div class="service-desc">新成屋、中古屋、大樓、透天</div>
     </div>
     <div class="service-card">
-      <div class="service-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-      </div>
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div>
       <div class="service-name">租屋媒合</div>
-      <div class="service-desc">房東房客需求精準配對快速成交</div>
+      <div class="service-desc">房東房客需求精準配對</div>
     </div>
     <div class="service-card">
-      <div class="service-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-      </div>
-      <div class="service-name">市場分析</div>
-      <div class="service-desc">實價登錄解析行情估價透明公正</div>
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg></div>
+      <div class="service-name">帶看諮詢</div>
+      <div class="service-desc">陪你看屋、解答疑問</div>
     </div>
     <div class="service-card">
-      <div class="service-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93-2.67-1.14-5-4.43-5-7.93V7.18L12 5z"/></svg>
-      </div>
-      <div class="service-name">簽約護航</div>
-      <div class="service-desc">合約審閱到交屋全程專業陪同</div>
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+      <div class="service-name">在地生活情報</div>
+      <div class="service-desc">學區、交通、生活圈全知道</div>
     </div>
   </div>
 
   <!-- 服務承諾 -->
   <div class="info-section">
     <div class="section-label">My Promise</div>
-    <div class="promise-section">
-      <div class="promise-row">
-        <div class="promise-dot"></div>
-        <div class="promise-text">用誠信贏得每位客戶的信任</div>
-      </div>
-      <div class="promise-row">
-        <div class="promise-dot"></div>
-        <div class="promise-text">在地深耕，熟悉蘆竹南崁每條街道</div>
-      </div>
-      <div class="promise-row">
-        <div class="promise-dot"></div>
-        <div class="promise-text">成交後持續關懷，買賣不是終點</div>
-      </div>
+    <div class="promise-row">
+      <div class="promise-dot"></div>
+      <div class="promise-text">不熟的不說熟，熟的跟你說清楚</div>
+    </div>
+    <div class="promise-row">
+      <div class="promise-dot"></div>
+      <div class="promise-text">用在地人的眼光幫你挑房</div>
+    </div>
+    <div class="promise-row">
+      <div class="promise-dot"></div>
+      <div class="promise-text">新手業務，加倍用心對待每位客戶</div>
     </div>
   </div>
 
-  <!-- 聯絡方式 -->
+  <!-- 聯絡 -->
   <div class="info-section">
     <div class="section-label">Contact</div>
   </div>
@@ -476,7 +446,7 @@
         <div class="c-label">手機直撥</div>
         <div class="c-value">0963-585-690</div>
       </div>
-      <span class="c-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="#d0c8b8"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+      <span class="c-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="#c8d8d6"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
     </a>
     <a class="contact-row" href="https://line.me/ti/p/@019nrmqw" target="_blank">
       <div class="c-icon ci-line">
@@ -486,39 +456,39 @@
         <div class="c-label">LINE 官方帳號</div>
         <div class="c-value">@019nrmqw</div>
       </div>
-      <span class="c-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="#d0c8b8"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+      <span class="c-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="#c8d8d6"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
     </a>
   </div>
 
-  <!-- CTA 按鈕 -->
+  <!-- CTA -->
   <div class="cta-section">
     <a class="cta-btn btn-phone" href="tel:0963585690">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-      立即致電
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      電話詢問
     </a>
     <a class="cta-btn btn-line" href="https://line.me/ti/p/@019nrmqw" target="_blank">
-      <svg viewBox="0 0 24 24" width="17" height="17" fill="#fff"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-      LINE 加好友
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      加入好友
     </a>
   </div>
 
-  <!-- 精選物件 -->
   <a class="property-btn" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-    查看精選物件
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    看看物件
   </a>
 
   <!-- Footer -->
-  <div class="card-footer">
-    <div class="footer-botanical">
-      <svg viewBox="0 0 320 90" fill="none" width="320">
-        <path d="M160 82 C160 58 135 42 105 32 C75 22 42 17 30 33 C18 49 40 64 72 70 C104 76 136 70 160 82Z" fill="#fff"/>
-        <path d="M160 82 C160 58 185 42 215 32 C245 22 278 17 290 33 C302 49 280 64 248 70 C216 76 184 70 160 82Z" fill="#fff"/>
+  <div class="card-footer grid-bg">
+    <div class="footer-flower">
+      <svg width="200" height="60" viewBox="0 0 200 60" fill="none">
+        <ellipse cx="100" cy="30" rx="50" ry="20" fill="#fff"/>
+        <ellipse cx="60" cy="20" rx="25" ry="12" fill="#fff" opacity="0.6" transform="rotate(-20 60 20)"/>
+        <ellipse cx="140" cy="20" rx="25" ry="12" fill="#fff" opacity="0.6" transform="rotate(20 140 20)"/>
       </svg>
     </div>
     <div class="footer-name">Cindy</div>
-    <div class="footer-tagline">不動產　你可以信任的夥伴</div>
-    <div class="footer-company">中信房屋 南崁一極店 · 桃園蘆竹南崁</div>
+    <div class="footer-tagline">南崁長大的人，陪你找到家</div>
+    <div class="footer-company">中信房屋 南崁一極店</div>
   </div>
 
 </body>
