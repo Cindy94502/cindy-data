@@ -207,55 +207,91 @@
     }
     .promise-row:first-of-type { border-top: 1px solid rgba(178,205,203,0.3); }
 
-    /* 成交記錄 拍立得 */
-    .deals-strip {
+    /* 成交記錄輪播 */
+    .deals-carousel {
+      position: relative;
+      padding: 0 20px 16px;
+      overflow: hidden;
+    }
+    .deals-track {
       display: flex;
-      gap: 14px;
-      padding: 10px 20px 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
+      transition: transform 0.4s cubic-bezier(.4,0,.2,1);
     }
-    .deals-strip::-webkit-scrollbar { display: none; }
-    .polaroid {
+    .deal-slide {
       flex-shrink: 0;
+      width: 100%;
+    }
+    .deal-card-new {
       background: #fff;
-      padding: 8px 8px 20px;
-      box-shadow: 3px 5px 16px rgba(0,0,0,0.18);
-      border-radius: 2px;
-      width: 110px;
-      scroll-snap-align: start;
-      transition: transform 0.2s;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    .polaroid:nth-child(odd)  { transform: rotate(-2.5deg); }
-    .polaroid:nth-child(even) { transform: rotate(2deg); }
-    .polaroid:nth-child(3n)   { transform: rotate(-1deg); }
-    .polaroid:active { transform: rotate(0deg) scale(1.05); }
-    .polaroid-photo {
-      width: 100%; height: 88px;
-      background: linear-gradient(135deg, #c8dedd 0%, #B2CDCB 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 36px;
-      margin-bottom: 10px;
-      border-radius: 1px;
+    .deal-img {
+      position: relative;
+      width: 100%; height: 180px;
+      overflow: hidden;
     }
-    .polaroid-label {
-      text-align: center;
-      font-family: 'Zen Maru Gothic','Noto Sans TC',sans-serif;
+    .deal-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
-    .polaroid-type {
-      font-size: 13px; font-weight: 700; color: #2a2018;
-      margin-bottom: 2px;
+    .deal-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px;
     }
-    .polaroid-area {
-      font-size: 11px; color: #7a8a88; margin-bottom: 5px;
+    .deal-img-placeholder .ph-type {
+      font-size: 28px; font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: 2px;
     }
-    .polaroid-stamp {
-      display: inline-block;
-      font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
-      color: #5a8a87; border: 1.5px solid #5a8a87;
-      border-radius: 3px; padding: 1px 5px;
+    .deal-img-placeholder .ph-sub {
+      font-size: 12px; color: rgba(255,255,255,0.75);
+      letter-spacing: 1px;
+    }
+    .deal-ribbon {
+      position: absolute; top: 16px; right: -8px;
+      background: #5a8a87; color: #fff;
+      font-size: 11px; font-weight: 700;
+      padding: 4px 16px 4px 10px;
+      border-radius: 3px 0 0 3px;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .deal-ribbon::after {
+      content: '';
+      position: absolute; right: 0; bottom: -6px;
+      border-left: 8px solid #3a6a68;
+      border-bottom: 6px solid transparent;
+    }
+    .deal-body {
+      padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .deal-body-left .db-type {
+      font-size: 16px; font-weight: 700; color: #2a2018;
+    }
+    .deal-body-left .db-meta {
+      font-size: 12px; color: #7a8a88; margin-top: 2px;
+    }
+    .deal-body-right .db-date {
+      font-size: 11px; color: #9aadab; text-align: right;
+    }
+    .deals-dots {
+      display: flex; justify-content: center; gap: 6px;
+      margin-top: 10px;
+    }
+    .deals-dots span {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(178,205,203,0.4);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .deals-dots span.active {
+      background: #5a8a87;
+      width: 18px; border-radius: 3px;
     }
     .promise-dot { width:7px; height:7px; border-radius:50%; background:#B2CDCB; flex-shrink:0; margin-top:5px; }
     .promise-text {
@@ -758,10 +794,11 @@
   <div class="info-section">
     <div class="section-label">Recent Deals</div>
   </div>
-  <div id="deals-section">
-    <div id="deals-list" class="deals-strip">
-      <div style="color:#9aadab; font-size:13px; padding:16px 0; white-space:nowrap;">載入中…</div>
+  <div id="deals-section" class="deals-carousel">
+    <div id="deals-list" class="deals-track">
+      <div class="deal-slide" style="color:#9aadab;font-size:13px;padding:16px 0;text-align:center;">載入中…</div>
     </div>
+    <div class="deals-dots" id="deals-dots"></div>
   </div>
 
   <div class="section-divider" style="margin:22px 0 0;"></div>
@@ -860,7 +897,14 @@
 <script>
 const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/10-AaWsmcksGz74ebv8TwQyD_0DCbnMoXat4zj07-8Rg/gviz/tq?tqx=out:csv&sheet=工作表1';
 
-const TYPE_ICON = { '店面':'🏪', '套房':'🛏️', '住宅':'🏠', '透天':'🏡', '大樓':'🏢', '土地':'🌿' };
+const TYPE_BG = {
+  '店面': 'linear-gradient(135deg,#7ab5b3,#4a8a88)',
+  '套房': 'linear-gradient(135deg,#a8c8b8,#6a9a88)',
+  '住宅': 'linear-gradient(135deg,#B2CDCB,#7a9a98)',
+  '透天': 'linear-gradient(135deg,#c8a878,#a87848)',
+  '大樓': 'linear-gradient(135deg,#8898b8,#5a6888)',
+  '土地': 'linear-gradient(135deg,#a8b878,#7a8848)',
+};
 
 function parseCSV(text) {
   const lines = text.trim().split('\n');
@@ -873,20 +917,59 @@ function parseCSV(text) {
   }).filter(r => r['類型']);
 }
 
+let dealIdx = 0, dealTimer = null, dealTotal = 0;
+
+function dealGoTo(i) {
+  dealIdx = (i + dealTotal) % dealTotal;
+  document.getElementById('deals-list').style.transform = `translateX(-${dealIdx * 100}%)`;
+  document.querySelectorAll('#deals-dots span').forEach((d,j) => d.classList.toggle('active', j===dealIdx));
+}
+
 function renderDeals(rows) {
-  const el = document.getElementById('deals-list');
-  if (!rows.length) { el.innerHTML = '<div style="text-align:center;color:#9aadab;font-size:13px;padding:16px 0;">暫無記錄</div>'; return; }
-  el.innerHTML = rows.map(r => {
-    const icon = TYPE_ICON[r['類型']] || '🏠';
-    return `<div class="polaroid">
-      <div class="polaroid-photo">${icon}</div>
-      <div class="polaroid-label">
-        <div class="polaroid-type">${r['類型']}</div>
-        ${r['地區'] ? `<div class="polaroid-area">${r['地區']}</div>` : ''}
-        <span class="polaroid-stamp">✓ 成交</span>
+  const track = document.getElementById('deals-list');
+  const dots  = document.getElementById('deals-dots');
+  dealTotal = rows.length;
+  if (!rows.length) {
+    track.innerHTML = '<div class="deal-slide" style="text-align:center;color:#9aadab;font-size:13px;padding:16px 0;">暫無記錄</div>';
+    return;
+  }
+  track.innerHTML = rows.map(r => {
+    const bg = TYPE_BG[r['類型']] || 'linear-gradient(135deg,#B2CDCB,#7a9a98)';
+    const imgHtml = r['圖片']
+      ? `<img src="${r['圖片']}" alt="${r['類型']}" loading="lazy">`
+      : `<div class="deal-img-placeholder" style="background:${bg}">
+           <div class="ph-type">${r['類型']}</div>
+           ${r['地區'] ? `<div class="ph-sub">${r['地區']}</div>` : ''}
+         </div>`;
+    return `<div class="deal-slide">
+      <div class="deal-card-new">
+        <div class="deal-img">
+          ${imgHtml}
+          <div class="deal-ribbon">✓ 成交</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-body-left">
+            <div class="db-type">${r['類型']}</div>
+            ${r['地區'] ? `<div class="db-meta">${r['地區']}${r['說明'] ? ' · '+r['說明'] : ''}</div>` : ''}
+          </div>
+          ${r['日期'] ? `<div class="deal-body-right"><div class="db-date">${r['日期']}</div></div>` : ''}
+        </div>
       </div>
     </div>`;
   }).join('');
+  dots.innerHTML = rows.map((_,i) => `<span class="${i===0?'active':''}" onclick="dealGoTo(${i})"></span>`).join('');
+
+  // 自動輪播
+  if (dealTimer) clearInterval(dealTimer);
+  if (rows.length > 1) dealTimer = setInterval(() => dealGoTo(dealIdx + 1), 3500);
+
+  // 滑動支援
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) dealGoTo(dealIdx + (dx < 0 ? 1 : -1));
+  }, {passive:true});
 }
 
 fetch(SHEET_CSV)
@@ -894,7 +977,7 @@ fetch(SHEET_CSV)
   .then(text => renderDeals(parseCSV(text)))
   .catch(() => {
     document.getElementById('deals-list').innerHTML =
-      '<div style="text-align:center;color:#9aadab;font-size:13px;padding:8px 0;">（成交記錄更新中）</div>';
+      '<div class="deal-slide" style="text-align:center;color:#9aadab;font-size:13px;padding:16px 0;">（成交記錄更新中）</div>';
   });
 
 function switchTo(who) {
