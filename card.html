@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Cindy | 中信房屋 南崁一極店</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+      background: linear-gradient(160deg, #f7ede0 0%, #efe4d2 60%, #e8dbc8 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 28px;
+      max-width: 400px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(140, 90, 30, 0.15), 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    /* ─── Header ─── */
+    .card-header {
+      background: linear-gradient(145deg, #c8965a 0%, #b07a3a 55%, #9a6525 100%);
+      padding: 36px 28px 28px;
+      text-align: center;
+      position: relative;
+    }
+
+    .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 20px;
+      padding: 5px 14px;
+      color: rgba(255,255,255,0.95);
+      font-size: 12px;
+      letter-spacing: 0.8px;
+      margin-bottom: 20px;
+    }
+
+    .brand-dot {
+      width: 6px; height: 6px;
+      background: #ffd580;
+      border-radius: 50%;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      pointer-events: none;
+    }
+
+    .name {
+      color: #fff;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-bottom: 4px;
+    }
+
+    .title {
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    /* ─── Body ─── */
+    .card-body {
+      padding: 24px 24px 20px;
+    }
+
+    .area-badge {
+      background: linear-gradient(135deg, #fdf5e8, #faecd6);
+      border: 1px solid #e8c98a;
+      border-radius: 14px;
+      padding: 11px 18px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .area-badge .label {
+      font-size: 10px;
+      color: #b07a3a;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    .area-badge .value {
+      font-size: 15px;
+      color: #6b4718;
+      font-weight: 600;
+    }
+
+    /* Contact rows */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      padding: 13px 14px;
+      border-radius: 14px;
+      margin-bottom: 9px;
+      text-decoration: none;
+      color: #333;
+      background: #fdf8f2;
+      border: 1px solid #ecdcc6;
+      transition: background 0.18s, transform 0.18s;
+    }
+
+    .contact-row:hover {
+      background: #faeedd;
+      transform: translateX(4px);
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 14px;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+
+    .icon-phone { background: #eef6ee; }
+    .icon-line  { background: #e8f6e8; }
+    .icon-web   { background: #eaf0fb; }
+
+    .contact-text .lbl {
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+    }
+
+    .contact-text .val {
+      font-size: 15px;
+      color: #2c2c2c;
+      font-weight: 600;
+    }
+
+    .contact-arrow {
+      margin-left: auto;
+      color: #ccc;
+      font-size: 16px;
+    }
+
+    /* ─── CTA ─── */
+    .cta {
+      padding: 0 24px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 14px 8px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #c8965a, #9a6525);
+      color: #fff;
+    }
+
+    .btn-line {
+      background: #06c755;
+      color: #fff;
+    }
+
+    /* ─── QR section ─── */
+    .qr-section {
+      padding: 4px 24px 20px;
+      text-align: center;
+    }
+
+    .qr-label {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .qr-wrap {
+      display: inline-block;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ecdcc6;
+      border-radius: 14px;
+    }
+
+    /* ─── Footer ─── */
+    .card-footer {
+      background: #faf5ef;
+      border-top: 1px solid #ecdcc6;
+      padding: 14px 24px;
+      text-align: center;
+    }
+
+    .card-footer p {
+      font-size: 11px;
+      color: #bbb;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- Header -->
+  <div class="card-header">
+    <div class="brand-tag">
+      <span class="brand-dot"></span>
+      中信房屋 南崁一極店
+    </div>
+    <div class="avatar-wrap">
+      <img class="avatar" src="avatar.jpg" alt="Cindy">
+      <div class="avatar-ring"></div>
+    </div>
+    <div class="name">Cindy</div>
+    <div class="title">專業不動產業務</div>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body">
+
+    <div class="area-badge">
+      <div class="label">Service Area · 服務地區</div>
+      <div class="value">🏡 蘆竹 · 南崁 深耕在地</div>
+    </div>
+
+    <a class="contact-row" href="tel:0963585690">
+      <div class="contact-icon icon-phone">📞</div>
+      <div class="contact-text">
+        <div class="lbl">Phone</div>
+        <div class="val">0963-585-690</div>
+      </div>
+      <span class="contact-arrow">›</span>
+    </a>
+
+    <a class="contact-row" href="https://line.me/ti/p/@019nrmqw" target="_blank">
+      <div class="contact-icon icon-line">💬</div>
+      <div class="contact-text">
+        <div class="lbl">LINE</div>
+        <div class="val">@019nrmqw</div>
+      </div>
+      <span class="contact-arrow">›</span>
+    </a>
+
+    <a class="contact-row" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank">
+      <div class="contact-icon icon-web">🏠</div>
+      <div class="contact-text">
+        <div class="lbl">Website · 精選物件</div>
+        <div class="val">線上看物件</div>
+      </div>
+      <span class="contact-arrow">›</span>
+    </a>
+
+  </div>
+
+  <!-- CTA Buttons -->
+  <div class="cta">
+    <a class="btn btn-gold" href="tel:0963585690">
+      📞 立即電話
+    </a>
+    <a class="btn btn-line" href="https://line.me/ti/p/@019nrmqw" target="_blank">
+      💬 LINE 加好友
+    </a>
+  </div>
+
+  <!-- QR Code -->
+  <div class="qr-section">
+    <div class="qr-label">LINE QR Code · 掃描加好友</div>
+    <div class="qr-wrap">
+      <canvas id="qrcode"></canvas>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <p>桃園・蘆竹・南崁 房屋買賣專家</p>
+  </div>
+
+</div>
+
+<script>
+  QRCode.toCanvas(document.getElementById('qrcode'), 'https://line.me/ti/p/@019nrmqw', {
+    width: 140,
+    margin: 0,
+    color: { dark: '#6b4718', light: '#ffffff' }
+  });
+</script>
+
+</body>
+</html>
