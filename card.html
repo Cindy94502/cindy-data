@@ -4,421 +4,536 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Cindy | 中信房屋</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <style>
     *, *::before, *::after {
       margin: 0; padding: 0; box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
 
+    /* 全版滿屏，最大寬 430px 置中 */
+    html, body {
+      min-height: 100%;
+      background: #f4f1e8;
+    }
+
     body {
-      font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
-      min-height: 100vh;
-      /* 細緻點點底紋，像手帳紙 */
-      background-color: #f2ece2;
-      background-image: radial-gradient(circle, rgba(160,138,112,0.13) 1px, transparent 1px);
-      background-size: 22px 22px;
-      display: flex;
-      justify-content: center;
-      padding: 36px 16px 52px;
+      font-family: 'Noto Sans TC', 'PingFang TC', -apple-system, sans-serif;
+      max-width: 430px;
+      margin: 0 auto;
+      background: #faf9f5;
     }
 
-    /* ── 卡片 ── */
-    .card {
+    /* ══════════════════════════════
+       封面區（鼠尾草綠漸層）
+    ══════════════════════════════ */
+    .cover {
+      position: relative;
       width: 100%;
-      max-width: 400px;
-      background: #fffef9;
-      border-radius: 20px;
+      height: 200px;
+      background: linear-gradient(155deg, #7c9e7a 0%, #527254 45%, #3c5a3e 100%);
       overflow: hidden;
-      box-shadow:
-        0 1px 3px rgba(0,0,0,0.04),
-        0 8px 24px rgba(0,0,0,0.07),
-        0 28px 52px rgba(0,0,0,0.06);
     }
 
-    .card-inner {
-      padding: 32px 28px 28px;
+    /* 封面底部輕柔曲線 */
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: -5%; right: -5%;
+      height: 48px;
+      background: #faf9f5;
+      border-radius: 60% 60% 0 0;
     }
 
-    /* ══════════════════════
-       植物插畫 — 頂部
-    ══════════════════════ */
-    .botanical { width: 100%; display: block; }
+    /* 封面植物插畫 */
+    .cover-botanical {
+      position: absolute;
+      bottom: 20px; right: -10px;
+      width: 190px;
+      opacity: 0.13;
+      pointer-events: none;
+    }
 
-    /* ══════════════════════
-       大頭貼
-    ══════════════════════ */
-    .avatar-wrap {
+    .cover-botanical-left {
+      position: absolute;
+      top: 10px; left: -10px;
+      width: 130px;
+      opacity: 0.09;
+      pointer-events: none;
+      transform: scaleX(-1) rotate(15deg);
+    }
+
+    /* 公司標籤 */
+    .cover-brand {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.26);
+      border-radius: 30px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 1px;
+    }
+
+    .brand-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #d4e8b0;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════
+       大頭貼（跨越封面與白區）
+    ══════════════════════════════ */
+    .avatar-section {
       display: flex;
-      justify-content: center;
-      margin: 20px 0 22px;
+      flex-direction: column;
+      align-items: center;
+      margin-top: -68px;
+      position: relative;
+      z-index: 10;
     }
 
     .avatar-outer {
       position: relative;
-      width: 116px;
-      height: 116px;
+      display: inline-block;
     }
 
-    /* 虛線圓圈：手繪感 */
+    /* 虛線外圈 — 手繪感 */
     .avatar-outer::before {
       content: '';
       position: absolute;
       inset: -7px;
       border-radius: 50%;
-      border: 1.5px dashed rgba(130,112,88,0.32);
+      border: 1.5px dashed rgba(255,255,255,0.55);
     }
 
     .avatar {
-      width: 116px;
-      height: 116px;
-      border-radius: 50%;
-      object-fit: cover;
       display: block;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #faf9f5;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     }
 
-    /* ══════════════════════
+    /* ══════════════════════════════
        姓名區
-    ══════════════════════ */
-    .profile {
+    ══════════════════════════════ */
+    .profile-section {
+      padding: 14px 20px 6px;
       text-align: center;
-      margin-bottom: 10px;
     }
 
-    .name-en {
+    .profile-name {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 38px;
+      font-size: 36px;
       font-style: italic;
       font-weight: 600;
       color: #2a2218;
       letter-spacing: 1px;
-      line-height: 1;
-      display: block;
-      margin-bottom: 10px;
+      line-height: 1.1;
+      margin-bottom: 8px;
     }
 
-    .name-company {
+    .profile-company {
       font-family: 'Noto Serif TC', serif;
       font-size: 12px;
-      font-weight: 400;
-      color: #9a8268;
-      letter-spacing: 3px;
-      display: block;
+      color: #8a7a62;
+      letter-spacing: 2.5px;
       margin-bottom: 4px;
     }
 
-    .name-title {
+    .profile-title {
       font-size: 12px;
-      color: #b09878;
+      color: #6a8668;
       letter-spacing: 1.5px;
-    }
-
-    /* ══════════════════════
-       引言
-    ══════════════════════ */
-    .bio {
-      text-align: center;
-      font-size: 13px;
-      font-style: italic;
-      color: #7a6a56;
-      line-height: 1.85;
-      margin: 18px 0 20px;
-      padding: 14px 16px;
-      border-top: 1px solid rgba(160,138,112,0.14);
-      border-bottom: 1px solid rgba(160,138,112,0.14);
-    }
-
-    /* ══════════════════════
-       聯絡資訊
-    ══════════════════════ */
-    .contact-section {
-      margin-bottom: 20px;
-    }
-
-    .section-caption {
-      font-size: 10px;
-      color: #b8a888;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
+      font-weight: 500;
       margin-bottom: 12px;
     }
 
-    .contact-item {
+    .location-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(106,134,104,0.35);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: #527254;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .location-tag i { font-size: 10px; }
+
+    /* ══════════════════════════════
+       分隔（植物小插畫）
+    ══════════════════════════════ */
+    .section-divider {
       display: flex;
       align-items: center;
-      gap: 13px;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(160,138,112,0.1);
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.15s;
+      gap: 10px;
+      padding: 0 24px;
+      margin: 18px 0 0;
     }
 
-    .contact-item:first-of-type {
-      border-top: 1px solid rgba(160,138,112,0.1);
+    .div-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(140,120,100,0.18), transparent);
     }
 
-    .c-icon {
+    .div-leaf {
+      font-size: 14px;
+      color: rgba(106,134,104,0.5);
+      line-height: 1;
+    }
+
+    /* ══════════════════════════════
+       引言（文青 italic）
+    ══════════════════════════════ */
+    .quote-section {
+      padding: 16px 28px;
+      text-align: center;
+    }
+
+    .quote-text {
+      font-size: 13px;
+      font-style: italic;
+      color: #7a6a56;
+      line-height: 1.9;
+      font-family: 'Noto Serif TC', serif;
+    }
+
+    /* ══════════════════════════════
+       關於我（區塊標題）
+    ══════════════════════════════ */
+    .info-section {
+      padding: 0 20px;
+      margin-bottom: 4px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #b0a080;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding: 18px 0 0;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(140,120,100,0.1);
+    }
+
+    .info-row:first-of-type { border-top: 1px solid rgba(140,120,100,0.1); }
+
+    .info-icon {
       width: 20px;
       text-align: center;
-      color: #8a9878;
+      color: #6a8668;
       font-size: 14px;
+      padding-top: 1px;
       flex-shrink: 0;
     }
 
+    .info-text { flex: 1; }
+    .info-label { font-size: 10px; color: #b0a080; letter-spacing: 0.8px; margin-bottom: 2px; }
+    .info-value { font-size: 14px; font-weight: 500; color: #2a2218; line-height: 1.4; }
+
+    /* ══════════════════════════════
+       聯絡方式
+    ══════════════════════════════ */
+    .contact-section {
+      padding: 0 20px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(140,120,100,0.1);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.12s;
+    }
+
+    .contact-row:first-of-type { border-top: 1px solid rgba(140,120,100,0.1); }
+
+    .contact-row:active { background: rgba(106,134,104,0.05); }
+
+    .c-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .ci-phone { background: #eef2ea; color: #527254; }
+    .ci-line  { background: #e6f5ec; color: #0a9640; }
+    .ci-web   { background: #eaeff5; color: #4a6890; }
+
     .c-text { flex: 1; min-width: 0; }
+    .c-label { font-size: 10px; color: #b0a080; letter-spacing: 0.8px; margin-bottom: 2px; }
+    .c-value { font-size: 15px; font-weight: 600; color: #2a2218; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .c-arrow { color: #d0c8b8; font-size: 13px; }
 
-    .c-label {
-      font-size: 10px;
-      color: #b8a888;
-      letter-spacing: 1px;
-      margin-bottom: 2px;
-    }
-
-    .c-value {
-      font-size: 15px;
-      font-weight: 500;
-      color: #2a2218;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .c-arrow {
-      color: #d5c8b5;
-      font-size: 13px;
-    }
-
-    /* ══════════════════════
+    /* ══════════════════════════════
        行動按鈕
-    ══════════════════════ */
-    .cta-row {
+    ══════════════════════════════ */
+    .cta-section {
+      padding: 18px 20px 24px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-bottom: 26px;
     }
 
     .cta-btn {
-      height: 48px;
-      border-radius: 10px;
+      height: 50px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       text-decoration: none;
       letter-spacing: 0.5px;
-      border: 1.5px solid;
       transition: opacity 0.15s, transform 0.15s;
     }
 
-    .cta-btn:active { opacity: 0.78; transform: scale(0.97); }
+    .cta-btn:active { opacity: 0.8; transform: scale(0.97); }
 
     .btn-phone {
-      border-color: #2a2218;
-      color: #2a2218;
-      background: transparent;
+      background: #3c5a3e;
+      color: #fff;
     }
 
     .btn-line {
-      border-color: #06c755;
-      color: #06c755;
-      background: transparent;
+      background: #06c755;
+      color: #fff;
     }
 
-    /* ══════════════════════
-       QR Code
-    ══════════════════════ */
-    .qr-wrap {
-      background: #f8f4ed;
-      border: 1px solid rgba(160,138,112,0.16);
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .qr-title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: #2a2218;
-      margin-bottom: 3px;
-    }
-
-    .qr-sub {
-      font-size: 11px;
-      color: #a89878;
-      margin-bottom: 14px;
-    }
-
-    .qr-canvas-frame {
-      display: inline-block;
-      padding: 9px;
-      background: #fff;
+    /* ══════════════════════════════
+       精選物件連結
+    ══════════════════════════════ */
+    .property-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 20px 24px;
+      height: 48px;
       border-radius: 12px;
-      border: 1px solid rgba(160,138,112,0.12);
+      border: 1.5px solid rgba(106,134,104,0.4);
+      color: #527254;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: background 0.15s;
     }
 
-    .qr-id {
-      margin-top: 12px;
-      font-size: 12px;
-      color: #8a7868;
-      letter-spacing: 0.8px;
-    }
+    .property-btn:active { background: rgba(106,134,104,0.06); }
 
-    /* ══════════════════════
-       植物插畫 — 底部
-    ══════════════════════ */
+    /* ══════════════════════════════
+       Footer（植物裝飾）
+    ══════════════════════════════ */
     .card-footer {
-      background: #f2ece2;
-      border-top: 1px solid rgba(160,138,112,0.12);
-      padding: 14px 20px 16px;
+      background: linear-gradient(155deg, #7c9e7a 0%, #527254 45%, #3c5a3e 100%);
+      padding: 24px 20px 32px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .footer-text {
+    .footer-botanical {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+      position: relative;
+    }
+
+    .footer-company {
       font-size: 11px;
-      color: #a89878;
-      letter-spacing: 1.2px;
-      line-height: 1.9;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 1.5px;
+      position: relative;
     }
   </style>
 </head>
 <body>
-<div class="card">
 
-  <!-- 植物插畫 頂部 -->
-  <div class="card-inner">
-    <svg class="botanical" viewBox="0 0 344 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- 主枝 -->
-      <path d="M8 50 C45 38 95 32 148 22 C200 12 252 16 300 8" stroke="#8a9878" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-      <!-- 葉子 1 -->
-      <path d="M68 38 C62 22 78 20 82 30 C78 35 72 38 68 38Z" fill="#8a9878" opacity="0.52"/>
-      <path d="M62 42 C54 30 66 25 70 34 C67 38 64 41 62 42Z" fill="#8a9878" opacity="0.36"/>
-      <!-- 葉子 2 -->
-      <path d="M138 27 C132 11 148 9 152 19 C148 24 142 27 138 27Z" fill="#8a9878" opacity="0.48"/>
-      <path d="M144 23 C140 8 154 8 156 18 C153 21 147 23 144 23Z" fill="#8a9878" opacity="0.32"/>
-      <!-- 小支幹 -->
-      <path d="M148 22 C155 14 162 9 168 5" stroke="#8a9878" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-      <circle cx="168" cy="5" r="2.2" fill="#8a9878" opacity="0.38"/>
-      <circle cx="173" cy="3" r="1.5" fill="#8a9878" opacity="0.26"/>
-      <!-- 葉子 3 -->
-      <path d="M222 19 C216 3 232 1 236 11 C232 16 226 19 222 19Z" fill="#8a9878" opacity="0.44"/>
-      <!-- 末端小果實 -->
-      <circle cx="302" cy="8" r="3" fill="#8a9878" opacity="0.38"/>
-      <circle cx="309" cy="5" r="2" fill="#8a9878" opacity="0.28"/>
-      <circle cx="305" cy="2" r="1.5" fill="#8a9878" opacity="0.22"/>
-      <!-- 右側小葉 -->
-      <path d="M276 11 C270 -2 284 -2 287 8 C284 10 279 12 276 11Z" fill="#8a9878" opacity="0.38"/>
+  <!-- 封面 -->
+  <div class="cover">
+    <!-- 右側植物大插畫 -->
+    <svg class="cover-botanical" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 230 C100 200 80 170 60 140 C40 110 20 80 40 50 C60 20 100 10 120 30 C140 50 130 90 120 120 C110 150 100 180 100 230Z" fill="#fff"/>
+      <path d="M100 230 C105 195 130 168 150 140 C170 112 185 78 165 50 C145 22 110 18 95 40 C80 62 90 98 100 125 C110 152 100 185 100 230Z" fill="#fff" opacity="0.6"/>
+      <path d="M60 100 C40 90 20 60 30 40 C42 18 70 25 75 50 C78 65 70 85 60 100Z" fill="#fff" opacity="0.5"/>
+      <path d="M140 90 C162 78 178 48 168 30 C156 8 128 16 122 42 C118 57 128 76 140 90Z" fill="#fff" opacity="0.4"/>
     </svg>
 
-    <!-- 大頭貼 -->
-    <div class="avatar-wrap">
-      <div class="avatar-outer">
-        <img class="avatar" src="avatar.jpg" alt="Cindy">
-      </div>
-    </div>
+    <!-- 左側植物 -->
+    <svg class="cover-botanical-left" viewBox="0 0 140 180" fill="none">
+      <path d="M70 170 C70 140 55 115 40 90 C25 65 10 40 28 20 C46 0 75 5 85 25 C95 45 85 75 75 100 C65 125 70 148 70 170Z" fill="#fff"/>
+    </svg>
 
-    <!-- 姓名 -->
-    <div class="profile">
-      <span class="name-en">Cindy</span>
-      <span class="name-company">中信房屋 南崁一極店</span>
-      <span class="name-title">專業不動產業務 · 蘆竹 · 南崁</span>
+    <div class="cover-brand">
+      <span class="brand-dot"></span>
+      中信房屋 南崁一極店
     </div>
+  </div>
 
-    <!-- 引言 -->
-    <div class="bio">
+  <!-- 大頭貼 -->
+  <div class="avatar-section">
+    <div class="avatar-outer">
+      <img class="avatar" src="avatar.jpg" alt="Cindy">
+    </div>
+  </div>
+
+  <!-- 姓名 -->
+  <div class="profile-section">
+    <div class="profile-name">Cindy</div>
+    <div class="profile-company">中信房屋 南崁一極店</div>
+    <div class="profile-title">專業不動產業務</div>
+    <span class="location-tag">
+      <i class="fa-solid fa-location-dot"></i>
+      桃園 · 蘆竹 · 南崁
+    </span>
+  </div>
+
+  <!-- 分隔 -->
+  <div class="section-divider">
+    <div class="div-line"></div>
+    <span class="div-leaf"><i class="fa-solid fa-leaf"></i></span>
+    <div class="div-line"></div>
+  </div>
+
+  <!-- 引言 -->
+  <div class="quote-section">
+    <div class="quote-text">
       在蘆竹南崁深耕多年<br>
       陪你找到心中那個家
     </div>
-
-    <!-- 聯絡方式 -->
-    <div class="contact-section">
-      <div class="section-caption">Contact</div>
-
-      <a class="contact-item" href="tel:0963585690">
-        <span class="c-icon"><i class="fa-solid fa-phone"></i></span>
-        <div class="c-text">
-          <div class="c-label">手機</div>
-          <div class="c-value">0963-585-690</div>
-        </div>
-        <i class="fa-solid fa-chevron-right c-arrow"></i>
-      </a>
-
-      <a class="contact-item" href="https://line.me/ti/p/@019nrmqw" target="_blank">
-        <span class="c-icon">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="#8a9878"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-        </span>
-        <div class="c-text">
-          <div class="c-label">LINE</div>
-          <div class="c-value">@019nrmqw</div>
-        </div>
-        <i class="fa-solid fa-chevron-right c-arrow"></i>
-      </a>
-
-      <a class="contact-item" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank">
-        <span class="c-icon"><i class="fa-solid fa-house"></i></span>
-        <div class="c-text">
-          <div class="c-label">物件網站</div>
-          <div class="c-value">線上瀏覽精選物件</div>
-        </div>
-        <i class="fa-solid fa-chevron-right c-arrow"></i>
-      </a>
-    </div>
-
-    <!-- 行動按鈕 -->
-    <div class="cta-row">
-      <a class="cta-btn btn-phone" href="tel:0963585690">
-        <i class="fa-solid fa-phone" style="font-size:13px;"></i> 立即致電
-      </a>
-      <a class="cta-btn btn-line" href="https://line.me/ti/p/@019nrmqw" target="_blank">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="#06c755"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-        LINE 加好友
-      </a>
-    </div>
-
-    <!-- QR Code -->
-    <div class="qr-wrap">
-      <div class="qr-title">掃描加入 LINE 好友</div>
-      <div class="qr-sub">開啟相機對準 QR Code 即可</div>
-      <div class="qr-canvas-frame">
-        <canvas id="qrcode"></canvas>
-      </div>
-      <div class="qr-id">@019nrmqw</div>
-    </div>
-
-    <!-- 底部植物 -->
-    <svg class="botanical" viewBox="0 0 344 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.55; transform:scaleX(-1);">
-      <path d="M8 40 C50 28 110 24 168 16 C220 8 268 12 310 4" stroke="#8a9878" stroke-width="1" fill="none" stroke-linecap="round"/>
-      <path d="M80 30 C74 16 90 14 94 24 C90 28 84 31 80 30Z" fill="#8a9878" opacity="0.5"/>
-      <path d="M75 34 C67 22 80 18 83 27 C80 31 77 34 75 34Z" fill="#8a9878" opacity="0.35"/>
-      <path d="M158 20 C152 6 166 4 170 14 C166 18 161 21 158 20Z" fill="#8a9878" opacity="0.44"/>
-      <circle cx="312" cy="4" r="2.5" fill="#8a9878" opacity="0.35"/>
-      <circle cx="318" cy="2" r="1.5" fill="#8a9878" opacity="0.25"/>
-    </svg>
   </div>
+
+  <!-- 關於我 -->
+  <div class="info-section">
+    <div class="section-label">About</div>
+    <div class="info-row">
+      <span class="info-icon"><i class="fa-solid fa-building-columns"></i></span>
+      <div class="info-text">
+        <div class="info-label">服務公司</div>
+        <div class="info-value">中信房屋 南崁一極店</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon"><i class="fa-solid fa-briefcase"></i></span>
+      <div class="info-text">
+        <div class="info-label">職稱</div>
+        <div class="info-value">專業不動產業務</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-icon"><i class="fa-solid fa-map-pin"></i></span>
+      <div class="info-text">
+        <div class="info-label">服務地區</div>
+        <div class="info-value">桃園市 蘆竹區 · 南崁</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 聯絡方式 -->
+  <div class="info-section">
+    <div class="section-label">Contact</div>
+  </div>
+
+  <div class="contact-section">
+    <a class="contact-row" href="tel:0963585690">
+      <div class="c-icon ci-phone"><i class="fa-solid fa-phone"></i></div>
+      <div class="c-text">
+        <div class="c-label">手機</div>
+        <div class="c-value">0963-585-690</div>
+      </div>
+      <i class="fa-solid fa-chevron-right c-arrow"></i>
+    </a>
+
+    <a class="contact-row" href="https://line.me/ti/p/@019nrmqw" target="_blank">
+      <div class="c-icon ci-line">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="#0a9640"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      </div>
+      <div class="c-text">
+        <div class="c-label">LINE</div>
+        <div class="c-value">@019nrmqw</div>
+      </div>
+      <i class="fa-solid fa-chevron-right c-arrow"></i>
+    </a>
+  </div>
+
+  <!-- CTA 按鈕 -->
+  <div class="cta-section">
+    <a class="cta-btn btn-phone" href="tel:0963585690">
+      <i class="fa-solid fa-phone" style="font-size:13px;"></i>
+      立即致電
+    </a>
+    <a class="cta-btn btn-line" href="https://line.me/ti/p/@019nrmqw" target="_blank">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      LINE 加好友
+    </a>
+  </div>
+
+  <!-- 精選物件 -->
+  <a class="property-btn" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank">
+    <i class="fa-solid fa-house" style="font-size:14px;"></i>
+    查看精選物件
+  </a>
 
   <!-- Footer -->
   <div class="card-footer">
-    <div class="footer-text">
-      中信房屋 南崁一極店<br>
-      桃園 · 蘆竹 · 南崁
+    <div class="footer-botanical">
+      <svg viewBox="0 0 300 80" fill="none" width="300">
+        <path d="M150 75 C150 55 130 40 100 30 C70 20 40 15 30 30 C20 45 40 60 70 65 C100 70 130 65 150 75Z" fill="#fff"/>
+        <path d="M150 75 C150 55 170 40 200 30 C230 20 260 15 270 30 C280 45 260 60 230 65 C200 70 170 65 150 75Z" fill="#fff"/>
+      </svg>
     </div>
+    <div class="footer-name">Cindy</div>
+    <div class="footer-company">中信房屋 南崁一極店 · 桃園蘆竹南崁</div>
   </div>
 
-</div>
-
-<script>
-  QRCode.toCanvas(document.getElementById('qrcode'), 'https://line.me/ti/p/@019nrmqw', {
-    width: 152, margin: 1,
-    color: { dark: '#2a2218', light: '#ffffff' }
-  });
-</script>
 </body>
 </html>
