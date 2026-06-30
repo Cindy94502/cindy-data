@@ -207,28 +207,55 @@
     }
     .promise-row:first-of-type { border-top: 1px solid rgba(178,205,203,0.3); }
 
-    /* 成交記錄 */
-    .deal-card {
-      display: flex; align-items: center; gap: 12px;
-      background: #f4f9f8;
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 8px;
+    /* 成交記錄 拍立得 */
+    .deals-strip {
+      display: flex;
+      gap: 14px;
+      padding: 10px 20px 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
-    .deal-icon {
-      width: 38px; height: 38px; border-radius: 10px;
-      background: #B2CDCB;
+    .deals-strip::-webkit-scrollbar { display: none; }
+    .polaroid {
+      flex-shrink: 0;
+      background: #fff;
+      padding: 8px 8px 20px;
+      box-shadow: 3px 5px 16px rgba(0,0,0,0.18);
+      border-radius: 2px;
+      width: 110px;
+      scroll-snap-align: start;
+      transition: transform 0.2s;
+    }
+    .polaroid:nth-child(odd)  { transform: rotate(-2.5deg); }
+    .polaroid:nth-child(even) { transform: rotate(2deg); }
+    .polaroid:nth-child(3n)   { transform: rotate(-1deg); }
+    .polaroid:active { transform: rotate(0deg) scale(1.05); }
+    .polaroid-photo {
+      width: 100%; height: 88px;
+      background: linear-gradient(135deg, #c8dedd 0%, #B2CDCB 100%);
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 18px;
+      font-size: 36px;
+      margin-bottom: 10px;
+      border-radius: 1px;
     }
-    .deal-info { flex: 1; }
-    .deal-type { font-size: 14px; font-weight: 700; color: #2a2018; }
-    .deal-meta { font-size: 12px; color: #7a8a88; margin-top: 2px; }
-    .deal-badge {
-      background: #5a8a87; color: #fff;
-      font-size: 10px; font-weight: 700;
-      padding: 3px 8px; border-radius: 20px;
-      letter-spacing: 0.5px; flex-shrink: 0;
+    .polaroid-label {
+      text-align: center;
+      font-family: 'Zen Maru Gothic','Noto Sans TC',sans-serif;
+    }
+    .polaroid-type {
+      font-size: 13px; font-weight: 700; color: #2a2018;
+      margin-bottom: 2px;
+    }
+    .polaroid-area {
+      font-size: 11px; color: #7a8a88; margin-bottom: 5px;
+    }
+    .polaroid-stamp {
+      display: inline-block;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+      color: #5a8a87; border: 1.5px solid #5a8a87;
+      border-radius: 3px; padding: 1px 5px;
     }
     .promise-dot { width:7px; height:7px; border-radius:50%; background:#B2CDCB; flex-shrink:0; margin-top:5px; }
     .promise-text {
@@ -731,9 +758,9 @@
   <div class="info-section">
     <div class="section-label">Recent Deals</div>
   </div>
-  <div id="deals-section" style="padding: 0 20px 8px;">
-    <div id="deals-list">
-      <div style="text-align:center; color:#9aadab; font-size:13px; padding:16px 0;">載入中…</div>
+  <div id="deals-section">
+    <div id="deals-list" class="deals-strip">
+      <div style="color:#9aadab; font-size:13px; padding:16px 0; white-space:nowrap;">載入中…</div>
     </div>
   </div>
 
@@ -851,14 +878,13 @@ function renderDeals(rows) {
   if (!rows.length) { el.innerHTML = '<div style="text-align:center;color:#9aadab;font-size:13px;padding:16px 0;">暫無記錄</div>'; return; }
   el.innerHTML = rows.map(r => {
     const icon = TYPE_ICON[r['類型']] || '🏠';
-    const meta = [r['地區'], r['說明']].filter(Boolean).join(' · ');
-    return `<div class="deal-card">
-      <div class="deal-icon">${icon}</div>
-      <div class="deal-info">
-        <div class="deal-type">${r['類型']}</div>
-        ${meta ? `<div class="deal-meta">${meta}</div>` : ''}
+    return `<div class="polaroid">
+      <div class="polaroid-photo">${icon}</div>
+      <div class="polaroid-label">
+        <div class="polaroid-type">${r['類型']}</div>
+        ${r['地區'] ? `<div class="polaroid-area">${r['地區']}</div>` : ''}
+        <span class="polaroid-stamp">✓ 成交</span>
       </div>
-      <span class="deal-badge">✓ 成交</span>
     </div>`;
   }).join('');
 }
