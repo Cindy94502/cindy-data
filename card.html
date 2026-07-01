@@ -1066,6 +1066,7 @@ function switchTo(who) {
   document.querySelectorAll('.sw-btn').forEach(b => {
     if (b.getAttribute('onclick').includes(who)) b.classList.add('active');
   });
+  history.replaceState(null, '', who === 'dad' ? '#dad' : location.pathname);
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
