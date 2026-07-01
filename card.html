@@ -240,13 +240,14 @@
     }
     .deal-img {
       position: relative;
-      width: 100%; height: 180px;
+      width: 100%;
+      aspect-ratio: 3/4;
       overflow: hidden;
+      background: #fdeef3;
     }
     .deal-img img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: top center;
+      object-fit: contain;
     }
     .deal-img-placeholder {
       width: 100%; height: 100%;
