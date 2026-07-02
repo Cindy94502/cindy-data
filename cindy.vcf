@@ -1,11 +1,11 @@
 BEGIN:VCARD
 VERSION:3.0
-FN:Cindy
-N:;Cindy;;;
-TEL;TYPE=CELL:0963585690
+FN:Cindy 王小姐
+N:王;;Cindy;;
 ORG:中信房屋 南崁一極店
 TITLE:不動產業務
-NOTE:LINE: @019nrmqw｜服務地區：桃園蘆竹南崁
+TEL;TYPE=CELL:0963585690
 URL:https://cindy94502.github.io/cindy-data/card.html
+NOTE:LINE官方帳號 @019nrmqw｜服務地區：桃園南崁、蘆竹
 PHOTO;TYPE=JPEG;VALUE=URI:https://cindy94502.github.io/cindy-data/avatar.jpg
 END:VCARD
