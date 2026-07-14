@@ -460,12 +460,12 @@
     "youtubeUrl": ""
   },
   {
-    "title": "下南崁商圈 星馳市黃金店面 收租中",
+    "title": "下南崁商圈 星馳市一樓店面 收租中",
     "price": 26800000,
-    "webDescription": "位於下南崁商圈核心的星馳市一樓店面，夾層設計讓21坪的建物空間發揮更大效益，格局開放靈活，適合多元業種進駐。目前已有穩定租客，月租3.3萬、租期至民國115年9月底，是進可自營、退可收租的黃金標的。平面停車位含在總價內，社區管理完善，生活機能豐富，光明國小、全聯、康市美、全家、萬家福、河濱公園步行皆可達。",
+    "webDescription": "<p style=\"text-align: justify;\">星馳市的一樓店面，位置在下南崁商圈裡，附近就是光明國小、全聯、康是美、全家、萬家福，日常人流是社區生活自然帶出來的。</p><p style=\"text-align: justify;\">權狀 21.7 坪，室內做了夾層設計，實際使用空間比帳面數字大，開放式格局，進駐的業種彈性很高。含一個平面停車位，對店面來說補貨、停車都省事。社區共 905 戶、有電梯有管理，管理費每月 1,059 元。</p><p style=\"text-align: justify;\">目前的狀態是有租客承租中：月租 3.3 萬，租期到民國 115 年 9 月底。也就是說接手後不用自己找房客，租金先收著；等租約到期，要收回來自己開店、還是跟租客續約繼續收租，主動權都在你手上。</p><p style=\"text-align: justify;\">想了解目前租約細節、或想約時間看現場，歡迎跟我聯繫，我會把能提供的資訊如實整理給你。</p>",
     "nodeId": "4-a80c40f2-1191-4a84-a5ab-4782e8cfe9ad-38",
     "buildingCategory": "店面",
-    "layout": "開放",
+    "layout": "開放式（夾層設計）",
     "tags": "蘆竹,下南崁,電梯大樓,有停車位,低公設,近河濱公園,近光明國小,投資收租",
     "roomCount": "",
     "priceRange": "2,000萬以上",
@@ -474,12 +474,14 @@
     "wixParking": "有停車位",
     "wixFeatures": [
       "夾層設計，使用空間大",
-      "商圈核心，人流密集",
-      "投資收租中，月租3.3萬",
+      "下南崁商圈，社區人流穩定",
+      "租客承租中，月租3.3萬（至民國115年9月底）",
+      "含平面停車位",
+      "社區905戶，有電梯有管理",
       "近光明國小、全聯、河濱公園"
     ],
     "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/IMG_7574_mbf03o.jpg",
-    "shareImageUrl": "https://dl.dropboxusercontent.com/scl/fi/jo3o87zshhr9kkwkrgb0h/2026-7-3-6-47-17.jpg?rlkey=wbw9so6h4823py1rkr45zqsd1&raw=1&size=1024x768",
+    "shareImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/IMG_7578_jjjoqt.jpg",
     "category": "買房",
     "mapAddress": "",
     "youtubeUrl": ""
