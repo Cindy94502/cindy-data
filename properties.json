@@ -34,7 +34,7 @@
     "wixParking": "無停車位",
     "wixFeatures": "<ul><li>光明國小、光明國中雙學區，走路可到</li><li>中高樓層 6/12，採光明亮</li><li>下南崁商圈生活圈，近南崁市場、台茂</li><li>總戶數 249 戶，管理費 2,103 元／月</li><li>朝西北，有電梯、天然氣</li></ul>",
     "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/S__199278611_0_0_cwtorw.jpg",
-    "shareImageUrl": "",
+    "shareImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/w_1024,q_auto,f_jpg/S__199278611_0_0_cwtorw.jpg",
     "category": "買房",
     "mapAddress": "蘆竹區南順六街 桃園",
     "youtubeUrl": ""
@@ -260,26 +260,6 @@
     "youtubeUrl": ""
   },
   {
-    "title": "電通市美三房 | 近台茂商圈",
-    "price": 7980000,
-    "webDescription": "<p>這間電通市美的三房，開價798萬，在下南崁商圈是很實在的價格。建物34.11坪，主建物23.23坪，公設比21%，以20樓的電梯大樓來說空間算是買得有感。</p><p>格局3房2廳2衛1陽台，5樓的樓層高度剛好，不會太高也不會被前棟擋住。東北朝西南的座向，下午採光很不錯。屋齡31年，社區共1,354戶，有管理室，管理費1,688元。</p><p>最大的特點是它目前月租1萬6千元出租中，租客穩定。想置產收租的人等於買了就開始收租，不用再花時間找租客；自住的買方也可以等租約到期後再入住或重新裝修。</p><p>生活機能是下南崁的強項：台茂購物中心、好市多都在生活圈內，採買娛樂一次滿足。開車近南崁交流道，南北通勤方便；機場捷運A10山鼻站不遠，G13桃園捷運綠線預計明年通車，交通只會越來越好。學區是南美國小，河濱步道散步運動也近。</p><p>適合預算控制在800萬內想在南崁成家的首購族，或是想找穩定收租物件的置產族。</p>",
-    "nodeId": "4-861f3525-cae7-45f3-b38d-9a73b0d7b281-31",
-    "buildingCategory": "電梯大樓",
-    "layout": "3房2廳2衛1陽台",
-    "tags": "蘆竹,下南崁,三房,電梯大樓,近台茂,近好市多,投資收租,首購",
-    "roomCount": "3房",
-    "priceRange": "1,000萬以下",
-    "cloudinaryFolder": "diantong-shimei",
-    "wixLocation": "下南崁 台茂商圈",
-    "wixParking": "無停車位",
-    "wixFeatures": "<ul><li>798萬三房兩衛，公設比21%空間實在</li><li>目前月租1.6萬穩定出租中，接手即收租</li><li>台茂、好市多生活圈，採買娛樂方便</li><li>近南崁交流道，南北通勤順暢</li><li>G13捷運明年通車，A10機捷也在附近</li><li>1,354戶大社區有管理，管理費1,688元</li><li>南美國小學區，近河濱步道</li></ul>",
-    "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/1_0_xl7nuj.jpg",
-    "shareImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/3_0_ae55oh.jpg",
-    "category": "買房",
-    "mapAddress": "蘆竹區南山路一段 桃園",
-    "youtubeUrl": ""
-  },
-  {
     "title": "龍安商圈 全新電梯別墅4房雙車位",
     "price": 37280000,
     "webDescription": "<p>蘆竹區福興一街的全新電梯別墅，民國 113 年完工，屋齡只有 2 年。四層樓獨棟，格局是 4 房 3 廳 6 衛 4 陽台，每間房都有獨立衛浴和陽台，全套房設計，大家庭同住各自有隱私。</p><p>7 米大面寬，視覺上比一般透天寬敞很多，採光明亮格局方正。雙自家停車位，有電梯，上下樓不費力，長輩小孩都方便。</p><p>近文中路和交流道，南來北往交通便捷，開車或上高速公路都很順手。龍安市場、龍安公園就在附近，龍安商圈生活機能完整，學區是龍安國小。</p><p>無管理費，獨棟生活自在，長期持有成本低。</p>",
@@ -461,7 +441,7 @@
     "wixParking": "有停車位",
     "wixFeatures": "<ul><li>四房車格局，含坡道平面車位共50.57坪</li><li>社區公設超完整：健身房、KTV、圖書室、撞球室</li><li>24小時警衛管理，垃圾集中處理</li><li>月租28,000元，優質地段租金行情不錯</li><li>近錦興國小，接送方便</li><li>近南崁市場、特力屋，生活機能齊全</li><li>近交流道，交通便利</li></ul>",
     "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/660010_0_0_krf63k.jpg",
-    "shareImageUrl": "",
+    "shareImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/w_1024,q_auto,f_jpg/660010_0_0_krf63k.jpg",
     "category": "買房",
     "mapAddress": "蘆竹區中正路 桃園",
     "youtubeUrl": ""
