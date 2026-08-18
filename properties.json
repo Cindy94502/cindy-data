@@ -253,7 +253,7 @@
     "wixLocation": "蘆竹區 山鼻路",
     "wixParking": "有停車位",
     "wixFeatures": "<ul><li>走路就到機捷A10山鼻站</li><li>機捷直通台北車站，往來雙北輕鬆</li><li>搭機捷快速直達桃園國際機場，出行便利</li><li>國一甲高速公路動工在即</li><li>棟距開闊，視野好</li><li>3房2廳2衛格局寬敞</li><li>鄰近埤塘公園、五酒桶山</li><li>山腳商圈、全聯超市便利</li><li>往返台北、林口、機場便捷</li><li>首購成家最佳選擇</li><li>交通動線完善</li></ul>",
-    "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/2867233_0_jyggar.jpg",
+    "ogImageUrl": "",
     "shareImageUrl": "https://dl.dropboxusercontent.com/scl/fi/yas8hf2z960543hbvrfa0/2026-6-18-11-18-45.jpg?rlkey=o6b7y3br37ge148vfapvrs7tx&raw=1&size=1024x768",
     "category": "買房",
     "mapAddress": "蘆竹區山鼻路 桃園",
@@ -524,6 +524,26 @@
     "shareImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/w_1024,q_auto,f_jpg/IMG_0733_1__0_hsiif8.jpg",
     "category": "買房",
     "mapAddress": "蘆竹區山鼻二路 桃園",
+    "youtubeUrl": ""
+  },
+  {
+    "title": "誠佳品學三房車",
+    "price": 18800000,
+    "webDescription": "<p>誠佳品學這間三房加車位，開價1880萬，含一個11.06坪的坡道平面車位。建物36.66坪，主建物22.30坪，公設比32.35%。</p><p>2022年11月完工，屋齡3年。屋況保持得好，接手不用重新處理裝修，這在三年左右的房子裡不是必然。</p><p>格局3房2廳2衛。兩間衛浴都有開窗，濕氣和味道的差別，住過就知道。前後陽台分開，曬衣服和放設備各有各的位置，不會擠在同一邊。</p><p>5樓／15樓，東南朝西北。有電梯、天然瓦斯、管理，管理費每月3,333元。</p><p>青埔國中走路就到，小孩上下學不用接送。全聯採買、洽溪公園散步都在生活圈內，青埔商圈的機能也在附近。</p><p>適合小孩要念青埔國中的家庭、想在青埔買到三房加車位的自住客，或是重視屋況、不想花時間精力處理裝修的換屋族。</p>",
+    "nodeId": "4-861f3525-cae7-45f3-b38d-9a73b0d7b281-543",
+    "buildingCategory": "電梯大樓",
+    "layout": "3房2廳2衛",
+    "tags": "三房,有停車位,電梯大樓,中壢,青埔",
+    "roomCount": "3房",
+    "priceRange": "1,500－2,000萬",
+    "cloudinaryFolder": "chengjia-pinxue-3br",
+    "wixLocation": "青埔 青埔國中",
+    "wixParking": "有停車位",
+    "wixFeatures": "<ul><li>2022年11月完工，屋齡3年，屋況保持良好</li><li>總價1880萬含坡道平面車位</li><li>3房2廳2衛，兩間衛浴都有開窗</li><li>前後陽台分開，空間功能分明</li><li>建物36.66坪、主建物22.30坪，公設比32.35%</li><li>青埔國中步行可達</li><li>全聯採買、洽溪公園都在生活圈內</li><li>有電梯、天然瓦斯、管理，管理費每月3,333元</li></ul>",
+    "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/12459_0_0_aj0cxh.jpg",
+    "shareImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/w_1024,q_auto,f_jpg/12459_0_0_aj0cxh.jpg",
+    "category": "買房",
+    "mapAddress": "中壢區民權路四段 桃園",
     "youtubeUrl": ""
   }
 ]
