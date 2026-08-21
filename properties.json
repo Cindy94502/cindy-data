@@ -560,10 +560,30 @@
     "wixLocation": "過嶺 過嶺森林公園",
     "wixParking": "有停車位",
     "wixFeatures": "<ul><li>一樓四房，有雙露台</li><li>總價1800萬含坡道平面車位</li><li>2025年6月完工，屋齡1年</li><li>客餐廳、書房、主臥採光都好</li><li>建物46.46坪、主建物27.47坪，公設比33.96%</li><li>過嶺森林公園步行550公尺</li><li>中平國小、過嶺國中學區</li><li>億客城、中壢好市多採買方便，近台66線與高鐵站</li><li>社區56戶，有電梯與管理，管理費每月4,850元</li><li>沒有天然瓦斯</li></ul>",
-    "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/10085_0_sjswgi.jpg",
-    "shareImageUrl": "",
+    "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/11456_0_0_dbltsx.jpg",
+    "shareImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/w_1024,q_auto,f_jpg/11473_0_0_hvosaq.jpg",
     "category": "買房",
     "mapAddress": "中壢區福嶺路 桃園",
+    "youtubeUrl": ""
+  },
+  {
+    "title": "花都溫馨三房",
+    "price": 13920000,
+    "webDescription": "<p>花都這間三房，開價1392萬。建物34.49坪，主建物22.15坪，附屬建物3.24坪，公設比26.38%。</p><p>13樓／13樓的頂樓，而且是邊間。兩面採光通風，這是它跟同社區其他戶最不一樣的地方，座向朝東北。</p><p>格局3房2廳2衛，餐廳是獨立的位置，不用跟客廳擠在一起，家具怎麼擺比較好安排。</p><p>社區385戶，公設齊全，有接待大廳和中庭游泳池。屋齡21年，2005年1月完工，有電梯、天然瓦斯與管理，管理費每月1,825元。這間沒有車位。</p><p>位置在蘆竹區奉化路，下南崁生活圈。光明國小、光明國中都在學區內，全聯採買、遊八公園散步都在附近。</p><p>適合小孩要念光明國小、光明國中的家庭，重視採光通風的自住客，或是想在下南崁買到三房的首購族。</p>",
+    "nodeId": "4-861f3525-cae7-45f3-b38d-9a73b0d7b281-556",
+    "buildingCategory": "電梯大樓",
+    "layout": "3房2廳2衛",
+    "tags": "三房,無停車位,電梯大樓,下南崁,近光明國小,近光明國中,頂樓",
+    "roomCount": "3房",
+    "priceRange": "1,000－1,500萬",
+    "cloudinaryFolder": "huadu-3br",
+    "wixLocation": "下南崁 光明國小",
+    "wixParking": "無停車位",
+    "wixFeatures": "<ul><li>13樓／13樓頂樓邊間，兩面採光通風</li><li>總價1392萬</li><li>3房2廳2衛，餐廳位置獨立</li><li>建物34.49坪、主建物22.15坪，公設比26.38%</li><li>社區385戶，有接待大廳與中庭游泳池</li><li>光明國小、光明國中學區</li><li>全聯採買、遊八公園都在生活圈內</li><li>有電梯、天然瓦斯與管理，管理費每月1,825元</li><li>沒有車位</li></ul>",
+    "ogImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/IMG_9311_hy2zzj.jpg",
+    "shareImageUrl": "https://res.cloudinary.com/ddzync8km/image/upload/w_1024,q_auto,f_jpg/IMG_9313_ha2cor.jpg",
+    "category": "買房",
+    "mapAddress": "蘆竹區奉化路 桃園",
     "youtubeUrl": ""
   }
 ]
